@@ -1,0 +1,231 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>01. Basic &mdash; BNG Blaster Training 0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=411f5019" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=837179f8"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="02. Access" href="access.html" />
+    <link rel="prev" title="00. Setup" href="setup.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            BNG Blaster Training
+              <img src="_static/rtbrick_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="setup.html">00. Setup</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">01. Basic</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#network-interfaces">01.01. Network Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#api">01.02. API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pcap">01.03. PCAP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="access.html">02. Access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="routing.html">03. Routing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">BNG Blaster Training</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">01. Basic</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/basic.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="basic">
+<h1>01. Basic<a class="headerlink" href="#basic" title="Link to this heading"></a></h1>
+<section id="network-interfaces">
+<h2>01.01. Network Interfaces<a class="headerlink" href="#network-interfaces" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://rtbrick.github.io/bngblaster/interfaces.html#network-interfaces">https://rtbrick.github.io/bngblaster/interfaces.html#network-interfaces</a></p>
+<p>Before starting the tests, use the RBFS BNG CLI to verify that all physical interfaces are operational and active</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; RBFS CLI (op)
+op&gt; show interface physical
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <cite>lag-1</cite> interface is expected to be in an operational down state if the BNG Blaster LAG test is not running.</p>
+</div>
+<p>Now, enter the following command to start the BNG Blaster. It’s recommended to open the terminal in full-screen mode to ensure the complete ncurses UI fits on the screen.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
+cd ~/bngblaster-training/01_basic/01_network_interfaces
+
+# Check BNG Blaster Help
+bngblaster -h
+
+# Start BNG Blaster
+bngblaster -I -S run.sock -C config.json -l debug
+</pre></div>
+</div>
+<p>In the ncurses UI, press <code class="docutils literal notranslate"><span class="pre">F2</span></code> to toggle network interface statistics, or use <code class="docutils literal notranslate"><span class="pre">F7</span></code> and <code class="docutils literal notranslate"><span class="pre">F8</span></code> to start and stop traffic, respectively.</p>
+<p>In the next step, we’ll interact with the BNG Blaster CLI (<a class="reference external" href="https://rtbrick.github.io/bngblaster/api/index.html">https://rtbrick.github.io/bngblaster/api/index.html</a>).</p>
+<p>Open another shell session and enter the following commands.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
+cd ~/bngblaster-training/01_basic/01_network_interfaces
+bngblaster-cli run.sock interfaces
+bngblaster-cli run.sock network-interfaces
+
+# check traffic
+bngblaster-cli run.sock stream-summary
+bngblaster-cli run.sock stream-info flow-id 1
+bngblaster-cli run.sock stream-info flow-id 2
+</pre></div>
+</div>
+<p>In the output of the <code class="docutils literal notranslate"><span class="pre">stream-info</span></code> command, locate <code class="docutils literal notranslate"><span class="pre">rx-interface</span></code> and verify that it matches the expected interface. Review the additional information displayed here, and feel free to experiment with other commands.</p>
+<p>For the next steps, switch to the RBFS BNG CLI and use the following commands to check for neighbors and to ping the IP addresses of the BNG Blaster.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; RBFS (op)
+show neighbor
+
+# ping BNG Blaster
+ping 172.16.2.2 source-ip 172.16.2.1
+</pre></div>
+</div>
+<p>Now, let’s add a static route with the BNG Blaster as the next hop and observe the results.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; RBFS (op)
+switch-mode config
+
+# &gt; RBFS (cfg)
+set instance default static nexthop-profile blaster-veth2-v4 nexthop 172.16.2.2
+set instance default static route ipv4 1.2.3.4/32 unicast blaster-veth2-v4
+commit switch-to-op
+
+# &gt; RBFS (op)
+ping 1.2.3.4 source-ip 172.16.2.1
+</pre></div>
+</div>
+<p>The BNG Blaster responds to ICMP requests for all IP addresses, as long as the destination MAC address matches the BNG Blaster’s MAC address. This functionality also extends to routes advertised by the BNG Blaster using routing protocols like ISIS.</p>
+<p>To stop the BNG Blaster, press <code class="docutils literal notranslate"><span class="pre">Ctrl+C</span></code> or use the command <code class="docutils literal notranslate"><span class="pre">bngblaster-cli</span> <span class="pre">run.sock</span> <span class="pre">test-stop</span></code>.</p>
+</section>
+<section id="api">
+<h2>01.02. API<a class="headerlink" href="#api" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://rtbrick.github.io/bngblaster/controller.html">https://rtbrick.github.io/bngblaster/controller.html</a></p>
+<p>Create a new BNG Blaster instance.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
+cd ~/bngblaster-training/01_basic/02_api
+sh create.sh
+ls -l /var/bngblaster/E01_02_API/
+</pre></div>
+</div>
+<p>Start the BNG Blaster instance.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
+sh start.sh
+</pre></div>
+</div>
+<p>Send commands to the BNG Blaster instance.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
+sh command.sh
+</pre></div>
+</div>
+<p>You can edit <cite>command.sh</cite> to experiment with other commands available at [BNG Blaster API](<a class="reference external" href="https://rtbrick.github.io/bngblaster/api/index.html">https://rtbrick.github.io/bngblaster/api/index.html</a>).</p>
+<p>Stop the BNG Blaster instance.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
+sh stop.sh
+</pre></div>
+</div>
+<p>Delete the BNG Blaster instance.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
+sh delete.sh
+ls -l /var/bngblaster/
+</pre></div>
+</div>
+</section>
+<section id="pcap">
+<h2>01.03. PCAP<a class="headerlink" href="#pcap" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://rtbrick.github.io/bngblaster/troubleshooting.html#pcap">https://rtbrick.github.io/bngblaster/troubleshooting.html#pcap</a></p>
+<p>In this exercise, we will start the BNG Blaster with <cite>-P test.pcap</cite> to generate a PCAP file that includes all traffic sent and received by the BNG Blaster. Normally, stream traffic would be excluded, but we’ve set <cite>capture-include-streams</cite> to <cite>true</cite> in the configuration so that stream traffic is also captured.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
+cd ~/bngblaster-training/01_basic/03_pcap
+# Start BNG Blaster
+bngblaster -I -S run.sock -C config.json -l debug -P test.pcap
+</pre></div>
+</div>
+<p>Wait for all flows to be verified (indicated by the log message <cite>ALL STREAM TRAFFIC FLOWS VERIFIED</cite>), then stop the process with <cite>Ctrl+C</cite>. Once the BNG Blaster has stopped, examine the PCAP file with tshark.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
+tshark -X lua_script:/opt/bbl_header.lua -2 -R bng-blaster -O bng-blaster -r test.pcap
+</pre></div>
+</div>
+<p>BNG Blaster Header:
+<a class="reference external" href="https://rtbrick.github.io/bngblaster/streams.html#bng-blaster-traffic">https://rtbrick.github.io/bngblaster/streams.html#bng-blaster-traffic</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="setup.html" class="btn btn-neutral float-left" title="00. Setup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="access.html" class="btn btn-neutral float-right" title="02. Access" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2024, RtBrick, Inc..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

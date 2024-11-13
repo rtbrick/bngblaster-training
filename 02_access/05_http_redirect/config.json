@@ -1,0 +1,76 @@
+{
+    "__comment__": "E02_05_HTTP",
+    "interfaces": {
+        "access": [
+            {
+                "interface": "veth2",
+                "type": "ipoe",
+                "outer-vlan-min": 65,
+                "outer-vlan-max": 4094,
+                "inner-vlan-min": 2001,
+                "inner-vlan-max": 4000,
+                "network-interface": "veth3:10",
+                "agent-remote-id": "DEU.HTTP.{session-global}",
+                "agent-circuit-id": "0.0.0.0/0.0.0.0 veth2 {outer-vlan}:{inner-vlan}",
+                "http-client-group-id": 1
+            }
+        ],
+        "network": [
+            {
+                "__comment__": "veth3:10 to RBFS hostif-0/0/3",
+                "interface": "veth3",
+                "vlan": 10,
+                "address": "172.16.3.2/24",
+                "gateway": "172.16.3.1",
+                "address-ipv6": "fc66:1337:7331:3::2/64",
+                "gateway-ipv6": "fc66:1337:7331:3::1"
+            },
+            {
+                "__comment__": "veth4:10 to RBFS hostif-0/0/4",
+                "interface": "veth4",
+                "vlan": 10,
+                "address": "172.16.4.2/24",
+                "gateway": "172.16.4.1",
+                "address-ipv6": "fc66:1337:7331:4::2/64",
+                "gateway-ipv6": "fc66:1337:7331:4::1"
+            }
+        ]
+    },
+    "sessions": {
+        "max-outstanding": 800,
+        "start-rate": 400,
+        "stop-rate": 400,
+        "reconnect": true
+    },
+    "dhcp": {
+        "enable": true,
+        "broadcast": false
+    },
+    "dhcpv6": {
+        "enable": true,
+        "rapid-commit": true,
+        "ldra": true
+    },
+    "session-traffic": {
+        "ipv4-pps": 1,
+        "ipv6-pps": 1,
+        "ipv6pd-pps": 1
+    },
+    "http-server": [
+        {
+            "name": "SERVER",
+            "network-interface": "veth3:10",
+            "ipv4-address": "172.16.3.2",
+            "port": 80
+        }
+    ],
+    "http-client": [
+        {
+            "http-client-group-id": 1,
+            "name": "CLIENT-1",
+            "url": "blaster.rtbrick.com",
+            "destination-ipv4-address": "172.16.4.2",
+            "destination-port": 80
+        }
+    ]
+}

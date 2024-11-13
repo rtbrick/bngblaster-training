@@ -1,0 +1,67 @@
+{
+    "__comment__": "E02_02_L2TP",
+    "interfaces": {
+        "access": [
+            {
+                "interface": "veth2",
+                "type": "pppoe",
+                "outer-vlan-min": 65,
+                "outer-vlan-max": 4094,
+                "inner-vlan-min": 1,
+                "inner-vlan-max": 2000,
+                "network-interface": "veth3:10",
+                "agent-circuit-id": "0.0.0.0/0.0.0.0 veth2 {outer-vlan}:{inner-vlan}"
+            }
+        ],
+        "network": [
+            {
+                "__comment__": "veth3:10 to RBFS hostif-0/0/3",
+                "interface": "veth3",
+                "vlan": 10,
+                "address": "172.16.3.2/24",
+                "gateway": "172.16.3.1"
+            }
+        ]
+    },
+    "sessions": {
+        "reconnect": true
+    },
+    "pppoe": {
+        "host-uniq": true,
+        "vlan-priority": 6,
+        "service-name": "access"
+    },
+    "ppp": {
+        "authentication": {
+            "username": "l2tp@rtbrick.com",
+            "password": "test"
+        }
+    },
+    "dhcpv6": {
+        "enable": true,
+        "rapid-commit": true
+    },
+    "access-line": {
+        "agent-remote-id": "DEU.RTBRICK.{session-global}"
+    },
+    "session-traffic": {
+        "ipv4-pps": 1
+    },
+    "l2tp-server": [
+        {
+            "name": "LNS1",
+            "address": "172.16.3.3",
+            "secret": "test1"
+        },
+        {
+            "name": "LNS2",
+            "address": "172.16.3.4",
+            "secret": "test2"
+        },
+        {
+            "name": "LNS3",
+            "address": "172.16.3.5",
+            "secret": "test3"
+        }
+    ]
+}

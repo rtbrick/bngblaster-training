@@ -1,0 +1,74 @@
+{
+    "__comment__": "E02_06_LAG",
+    "interfaces": {
+        "lag": [
+            {
+                "interface": "lag1",
+                "lacp": true,
+                "lacp-timeout-short": true
+            }
+        ],
+        "links": [
+            {
+                "interface": "r1-h5",
+                "lag-interface": "lag1"
+            },
+            {
+                "interface": "r1-h6",
+                "lag-interface": "lag1"
+            }
+        ],
+        "access": [
+            {
+                "interface": "lag1",
+                "outer-vlan-min": 65,
+                "outer-vlan-max": 4094,
+                "inner-vlan-min": 1,
+                "inner-vlan-max": 2000,
+                "agent-circuit-id": "0.0.0.0/0.0.0.0 lag1 {outer-vlan}:{inner-vlan}"
+            }
+        ],
+        "network": [
+            {
+                "__comment__": "veth2:10 to RBFS hostif-0/0/2",
+                "interface": "veth2",
+                "vlan": 10,
+                "address": "172.16.2.2/24",
+                "gateway": "172.16.2.1",
+                "address-ipv6": "fc66:1337:7331:2::2/64",
+                "gateway-ipv6": "fc66:1337:7331:2::1"
+            }
+        ]
+    },
+    "sessions": {
+        "max-outstanding": 800,
+        "start-rate": 400,
+        "stop-rate": 400,
+        "reconnect": true
+    },
+    "pppoe": {
+        "host-uniq": true,
+        "vlan-priority": 6,
+        "service-name": "access",
+        "max-payload": 1500
+    },
+    "ppp": {
+        "mru": 1500,
+        "authentication": {
+            "username": "user@rtbrick.com",
+            "password": "test"
+        }
+    },
+    "dhcpv6": {
+        "enable": true,
+        "rapid-commit": true
+    },
+    "access-line": {
+        "agent-remote-id": "DEU.RTBRICK.{session-global}"
+    },
+    "session-traffic": {
+        "ipv4-pps": 1,
+        "ipv6-pps": 1,
+        "ipv6pd-pps": 1
+    }
+}

@@ -1,0 +1,90 @@
+{
+    "__comment__": "E02_03_IPoE",
+    "interfaces": {
+        "rx-threads": 1,
+        "access": [
+            {
+                "interface": "veth2",
+                "type": "ipoe",
+                "outer-vlan-min": 65,
+                "outer-vlan-max": 4094,
+                "inner-vlan-min": 2001,
+                "inner-vlan-max": 4000,
+                "network-interface": "veth3:10",
+                "agent-circuit-id": "0.0.0.0/0.0.0.0 veth2 {outer-vlan}:{inner-vlan}"
+            },
+            {
+                "interface": "veth3",
+                "type": "ipoe",
+                "outer-vlan-min": 65,
+                "outer-vlan-max": 4094,
+                "inner-vlan-min": 2001,
+                "inner-vlan-max": 4000,
+                "network-interface": "veth4:10",
+                "agent-circuit-id": "0.0.0.0/0.0.0.0 veth3 {outer-vlan}:{inner-vlan}"
+            },
+            {
+                "interface": "veth4",
+                "type": "ipoe",
+                "outer-vlan-min": 65,
+                "outer-vlan-max": 4094,
+                "inner-vlan-min": 2001,
+                "inner-vlan-max": 4000,
+                "network-interface": "veth2:10",
+                "agent-circuit-id": "0.0.0.0/0.0.0.0 veth4 {outer-vlan}:{inner-vlan}"
+            }
+        ],
+        "network": [
+            {
+                "__comment__": "veth2:10 to RBFS hostif-0/0/2",
+                "interface": "veth2",
+                "vlan": 10,
+                "address": "172.16.2.2/24",
+                "gateway": "172.16.2.1",
+                "address-ipv6": "fc66:1337:7331:2::2/64",
+                "gateway-ipv6": "fc66:1337:7331:2::1"
+            },
+            {
+                "__comment__": "veth3:10 to RBFS hostif-0/0/3",
+                "interface": "veth3",
+                "vlan": 10,
+                "address": "172.16.3.2/24",
+                "gateway": "172.16.3.1",
+                "address-ipv6": "fc66:1337:7331:3::2/64",
+                "gateway-ipv6": "fc66:1337:7331:3::1"
+            },
+            {
+                "__comment__": "veth4:10 to RBFS hostif-0/0/4",
+                "interface": "veth4",
+                "vlan": 10,
+                "address": "172.16.4.2/24",
+                "gateway": "172.16.4.1",
+                "address-ipv6": "fc66:1337:7331:4::2/64",
+                "gateway-ipv6": "fc66:1337:7331:4::1"
+            }
+        ]
+    },
+    "sessions": {
+        "max-outstanding": 800,
+        "start-rate": 400,
+        "stop-rate": 400,
+        "reconnect": true
+    },
+    "dhcp": {
+        "enable": true,
+        "broadcast": false
+    },
+    "dhcpv6": {
+        "enable": true,
+        "rapid-commit": true,
+        "ldra": true
+    },
+    "access-line": {
+        "agent-remote-id": "DEU.RTBRICK.{session-global}"
+    },
+    "session-traffic": {
+        "ipv4-pps": 1,
+        "ipv6-pps": 1,
+        "ipv6pd-pps": 1
+    }
+}

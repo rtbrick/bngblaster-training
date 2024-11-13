@@ -1,0 +1,108 @@
+{
+    "__comment__": "E02_04_MIX",
+    "interfaces": {
+        "access": [
+            {
+                "__comment__": "PPPoE",
+                "interface": "veth2",
+                "type": "pppoe",
+                "outer-vlan-min": 65,
+                "outer-vlan-max": 4093,
+                "outer-vlan-step": 2,
+                "inner-vlan-min": 1,
+                "inner-vlan-max": 2000,
+                "network-interface": "veth3:10",
+                "username": "user@rtbrick.com",
+                "agent-circuit-id": "0.0.0.0/0.0.0.0 veth2 {outer-vlan}:{inner-vlan}"
+            },
+            {
+                "__comment__": "L2TP",
+                "interface": "veth2",
+                "type": "pppoe",
+                "outer-vlan-min": 66,
+                "outer-vlan-max": 4094,
+                "outer-vlan-step": 2,
+                "inner-vlan-min": 1,
+                "inner-vlan-max": 2000,
+                "ipv6": false,
+                "network-interface": "veth3:10",
+                "username": "l2tp@rtbrick.com",
+                "agent-circuit-id": "0.0.0.0/0.0.0.0 veth2 {outer-vlan}:{inner-vlan}"
+            },
+            {
+                "__comment__": "IPoE",
+                "interface": "veth2",
+                "type": "ipoe",
+                "outer-vlan-min": 65,
+                "outer-vlan-max": 4094,
+                "inner-vlan-min": 2001,
+                "inner-vlan-max": 4000,
+                "network-interface": "veth3:10",
+                "agent-circuit-id": "0.0.0.0/0.0.0.0 veth2 {outer-vlan}:{inner-vlan}",
+                "dhcpv6-ldra": true
+            }
+        ],
+        "network": [
+            {
+                "__comment__": "veth3:10 to RBFS hostif-0/0/3",
+                "interface": "veth3",
+                "vlan": 10,
+                "address": "172.16.3.2/24",
+                "gateway": "172.16.3.1",
+                "address-ipv6": "fc66:1337:7331:3::2/64",
+                "gateway-ipv6": "fc66:1337:7331:3::1"
+            }
+        ]
+    },
+    "sessions": {
+        "max-outstanding": 800,
+        "start-rate": 400,
+        "stop-rate": 400,
+        "reconnect": true,
+        "iterate-vlan-outer": true
+    },
+    "pppoe": {
+        "host-uniq": true,
+        "vlan-priority": 6,
+        "service-name": "access"
+    },
+    "ppp": {
+        "authentication": {
+            "username": "user@rtbrick.com",
+            "password": "test"
+        }
+    },
+    "dhcp": {
+        "enable": true,
+        "broadcast": false
+    },
+    "dhcpv6": {
+        "enable": true,
+        "rapid-commit": true
+    },
+    "access-line": {
+        "agent-remote-id": "DEU.RTBRICK.{session-global}"
+    },
+    "session-traffic": {
+        "ipv4-pps": 1,
+        "ipv6-pps": 1,
+        "ipv6pd-pps": 1
+    },
+    "l2tp-server": [
+        {
+            "name": "LNS1",
+            "address": "172.16.3.3",
+            "secret": "test1"
+        },
+        {
+            "name": "LNS2",
+            "address": "172.16.3.4",
+            "secret": "test2"
+        },
+        {
+            "name": "LNS3",
+            "address": "172.16.3.5",
+            "secret": "test3"
+        }
+    ]
+}

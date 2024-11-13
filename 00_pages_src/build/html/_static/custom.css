@@ -1,0 +1,9 @@
+.wy-nav-content {
+    max-width: 1000px;
+}
+
+table {
+    width: 100%;
+    max-width: 100%;
+    table-layout: auto;
+}
