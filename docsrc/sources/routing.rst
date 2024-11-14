@@ -234,14 +234,22 @@ the IS-IS network, advertising prefixes with next-hops distributed across the vi
 03.06. BGP Convergence
 ----------------------
 
+This script is an adapted version of the BGP CP/DP Testing script 
+from the project below, tailored to run on low-scale virtual resources.
+
 https://github.com/rtbrick/BGP-CP-DP-Testing
+
+This project demonstrates how to measure the convergence between the BGP Control-Plane (CP) 
+and the Data-Plane (DP) using the open-source tool BNG Blaster. By utilizing BNG Blaster, 
+we can analyze and monitor the time it takes for routing changes to propagate from the control-plane, 
+where BGP updates occur, to the data-plane, where actual data packet forwarding happens.
 
 .. code-block:: none
 
     # > Linux
     cd ~/bngblaster-training/03_routing/06_bgp_convergence
 
-    # This will take a while—perfect time to grab a coffee!
+    # Generate BGP updates and streams
     ./generate_routes.sh
 
     # Start test

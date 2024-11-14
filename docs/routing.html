@@ -267,11 +267,17 @@ bngblaster -S run.sock -C config.json -T streams.json -l isis -l bgp -I
 </section>
 <section id="bgp-convergence">
 <h2>03.06. BGP Convergence<a class="headerlink" href="#bgp-convergence" title="Link to this heading"></a></h2>
+<p>This script is an adapted version of the BGP CP/DP Testing script
+from the project below, tailored to run on low-scale virtual resources.</p>
 <p><a class="reference external" href="https://github.com/rtbrick/BGP-CP-DP-Testing">https://github.com/rtbrick/BGP-CP-DP-Testing</a></p>
+<p>This project demonstrates how to measure the convergence between the BGP Control-Plane (CP)
+and the Data-Plane (DP) using the open-source tool BNG Blaster. By utilizing BNG Blaster,
+we can analyze and monitor the time it takes for routing changes to propagate from the control-plane,
+where BGP updates occur, to the data-plane, where actual data packet forwarding happens.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
 cd ~/bngblaster-training/03_routing/06_bgp_convergence
 
-# This will take a while—perfect time to grab a coffee!
+# Generate BGP updates and streams
 ./generate_routes.sh
 
 # Start test
