@@ -1,6 +1,16 @@
 {
     "__comment__": "E03_04_BGP",
     "interfaces": {
+        "links": [
+            {
+                "interface": "veth2",
+                "rx-threads": 2
+            },
+            {
+                "interface": "veth4",
+                "tx-threads": 2
+            }
+        ],
         "network": [
             {
                 "__comment__": "veth2:10 to RBFS hostif-0/0/2",
@@ -29,7 +39,7 @@
         {
             "local-ipv4-address": "172.16.2.2",
             "peer-ipv4-address": "172.16.2.1",
-            "network-interface": "veth2.10",
+            "network-interface": "veth2:10",
             "raw-update-file": "update.bgp",
             "local-as": 65001,
             "peer-as": 65001,
@@ -38,7 +48,7 @@
         {
             "local-ipv4-address": "172.16.3.2",
             "peer-ipv4-address": "172.16.3.1",
-            "network-interface": "veth3.10",
+            "network-interface": "veth3:10",
             "raw-update-file": "update.bgp",
             "local-as": 65001,
             "peer-as": 65001,
@@ -47,7 +57,7 @@
         {
             "local-ipv4-address": "172.16.4.2",
             "peer-ipv4-address": "172.16.4.1",
-            "network-interface": "veth4.10",
+            "network-interface": "veth4:10",
             "local-as": 65001,
             "peer-as": 65001,
             "family": [ "ipv4-unicast",  "ipv6-unicast" ]

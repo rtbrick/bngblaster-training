@@ -1,1 +1,4 @@
+tmp
 docsrc/build
+
+*.DS_Store

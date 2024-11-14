@@ -16,15 +16,24 @@ https://rtbrick.github.io/bngblaster/access/pppoe.html
     bngblaster -S run.sock -J report.json -j sessions -C config.json -I -c 1
 
 
-The parameter ``-c 1`` defines how many sessions you would like to start. 
-You can increase this number to setup more sessions. 
+.. note::
+
+    The parameter ``-c 1`` defines how many sessions you would like to start. 
+    You can increase this number to setup more sessions. 
+
 
 .. code-block:: none
 
     # > RBFS (op)
     show subscriber detail
+    show subscriber <subscriber-id> detail
+    show subscriber count
     show pppoe session detail
+    show pppoe session <subscriber-id> detail
 
+
+In the other shell, use the following commands to interact 
+with the active BNG Blaster instance.
 
 .. code-block:: none
 
@@ -51,6 +60,19 @@ Check RADIUS logs.
 
 Checking the Grafana dashboard, you should see an increase in the subscriber count.
 
+After the test has stopped, use the following RBFS commands to investigate why subscribers were terminated. 
+Start with these commands if a subscriber fails to connect or disconnects unexpectedly.
+
+.. code-block:: none
+
+    # > RBFS (op)
+    show subscriber history
+
+
+A list of all termination reasons can be found here:
+https://documents.rtbrick.com/techdocs/current/radiusservices/radius_control.html#radius-terminate-codes
+
+
 02.02. L2TP
 -----------
 
@@ -68,6 +90,16 @@ https://rtbrick.github.io/bngblaster/access/l2tp.html
 
     # > RBFS (op)
     show l2tp tunnel sessions
+    show l2tp tunnel <Local TID>
+
+
+After the test has stopped, you can use the following RBFS commands to investigate why the tunnel and session were closed.
+
+.. code-block:: none
+
+    # > RBFS (op)
+    show l2tp tunnel history
+    show subscriber history filter type L2TP
 
 
 02.03. IPoE (DHCP)
@@ -86,6 +118,8 @@ https://rtbrick.github.io/bngblaster/access/ipoe.html
 02.04. MIX
 ----------
 
+This test generates a mix of PPPoE, L2TP, and IPoE (DHCP) subscribers.
+
 .. code-block:: none
 
     # > Linux
@@ -97,6 +131,14 @@ https://rtbrick.github.io/bngblaster/access/ipoe.html
 02.05. HTTP
 -----------
 
+This test is designed to evaluate the BNG HTTP redirect service, a common feature in modern BNG deployments.
+
+In this scenario, the BNG Blaster functions as both an HTTP client and server. Once a subscriber is established, 
+the BNG Blaster IPoE client initiates a TCP connection to the HTTP server. However, this connection is intercepted 
+and terminated by the BNG, which is controlled via RADIUS and responds with an HTTP 302 redirect.
+
+https://rtbrick.github.io/bngblaster/http.html
+
 .. code-block:: none
 
     # > Linux
@@ -104,6 +146,8 @@ https://rtbrick.github.io/bngblaster/access/ipoe.html
     # Start BNG Blaster
     bngblaster -S run.sock -C config.json -l http -c 1
 
+
+In the other shell, use the following commands to interact with the active BNG Blaster instance.
 
 .. code-block:: none
 
@@ -115,6 +159,8 @@ https://rtbrick.github.io/bngblaster/access/ipoe.html
 02.06. LAG
 ----------
 
+https://rtbrick.github.io/bngblaster/interfaces.html#link-aggregation-lag
+
 .. code-block:: none
 
     # > Linux
@@ -122,8 +168,9 @@ https://rtbrick.github.io/bngblaster/access/ipoe.html
     # Start BNG Blaster
     bngblaster -S run.sock -J report.json -j sessions -C config.json -I -l dhcp -l ip -c 3
 
+.. note::
 
-You may see a warning like this, which can be ignored for now. 
+    You may see a warning like those below, which can be ignored. 
 
 .. code-block:: none
 

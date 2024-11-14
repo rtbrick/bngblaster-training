@@ -24,6 +24,9 @@ https://rtbrick.github.io/bngblaster/routing/isis.html
     bngblaster -S run.sock -C config.json -l isis
 
 
+In the other shell, use the following commands to interact 
+with the active BNG Blaster instance.
+
 .. code-block:: none
 
     # > Linux
@@ -76,6 +79,9 @@ https://rtbrick.github.io/bngblaster/routing/ospf.html
     bngblaster -S run.sock -C config.json -l ospf
 
 
+In the other shell, use the following commands to interact 
+with the active BNG Blaster instance.
+
 .. code-block:: none
 
     # > Linux
@@ -116,6 +122,9 @@ https://rtbrick.github.io/bngblaster/routing/ldp.html
     # Start BNG Blaster
     bngblaster -S run.sock -C config.json -l ldp
 
+
+In the other shell, use the following commands to interact 
+with the active BNG Blaster instance.
 
 .. code-block:: none
 
@@ -158,10 +167,33 @@ https://rtbrick.github.io/bngblaster/routing/bgp.html
     cd ~/bngblaster-training/03_routing/04_bgp
 
     # Generate BGP updates with corresponding streams
-    bgpupdate -f update.bgp -a 65001 -l 100 -n 192.168.0.0 -N 10 -p 10.1.0.0/24 -P 100000 -s streams.json
+    bgpupdate -f update.bgp -a 65001 -l 100 -n 172.16.2.2 -N 1 -p 10.1.0.0/24 -P 100000 --end-of-rib -s streams.json --stream-interface veth4:10 --stream-pps 0.1
 
     # Start BNG Blaster
-    bngblaster -S run.sock -C config.json -T streams.json -l bgp 
+    bngblaster -S run.sock -C config.json -T streams.json -l bgp -I
+
+
+.. note::
+
+    The configuration shows asymmetric thread allocation, with two TX threads for the traffic source interface 
+    and two RX threads for the traffic destination interface. All other interfaces and traffic directions are 
+    handled by the main thread.
+
+
+In the other shell, use the following commands to interact 
+with the active BNG Blaster instance.
+
+.. code-block:: none
+
+    # > Linux
+    cd ~/bngblaster-training/03_routing/04_bgp
+    bngblaster-cli run.sock bgp-sessions
+
+.. code-block:: none
+
+    # > RBFS (op)
+    show bgp peer 
+    show route summary
 
 
 03.05. BGP with ISIS

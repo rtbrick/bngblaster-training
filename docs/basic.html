@@ -95,7 +95,8 @@ op&gt; show interface physical
 <p class="admonition-title">Note</p>
 <p>The <cite>lag-1</cite> interface is expected to be in an operational down state if the BNG Blaster LAG test is not running.</p>
 </div>
-<p>Now, enter the following command to start the BNG Blaster. It’s recommended to open the terminal in full-screen mode to ensure the complete ncurses UI fits on the screen.</p>
+<p>Now, enter the following command to start the BNG Blaster. It’s recommended to open the terminal in full-screen mode
+to ensure the complete ncurses UI fits on the screen.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
 cd ~/bngblaster-training/01_basic/01_network_interfaces
 
@@ -108,7 +109,8 @@ bngblaster -I -S run.sock -C config.json -l debug
 </div>
 <p>In the ncurses UI, press <code class="docutils literal notranslate"><span class="pre">F2</span></code> to toggle network interface statistics, or use <code class="docutils literal notranslate"><span class="pre">F7</span></code> and <code class="docutils literal notranslate"><span class="pre">F8</span></code> to start and stop traffic, respectively.</p>
 <p>In the next step, we’ll interact with the BNG Blaster CLI (<a class="reference external" href="https://rtbrick.github.io/bngblaster/api/index.html">https://rtbrick.github.io/bngblaster/api/index.html</a>).</p>
-<p>Open another shell session and enter the following commands.</p>
+<p>In the other shell, use the following commands to interact
+with the active BNG Blaster instance.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
 cd ~/bngblaster-training/01_basic/01_network_interfaces
 bngblaster-cli run.sock interfaces
@@ -181,14 +183,17 @@ ls -l /var/bngblaster/
 <section id="pcap">
 <h2>01.03. PCAP<a class="headerlink" href="#pcap" title="Link to this heading"></a></h2>
 <p><a class="reference external" href="https://rtbrick.github.io/bngblaster/troubleshooting.html#pcap">https://rtbrick.github.io/bngblaster/troubleshooting.html#pcap</a></p>
-<p>In this exercise, we will start the BNG Blaster with <cite>-P test.pcap</cite> to generate a PCAP file that includes all traffic sent and received by the BNG Blaster. Normally, stream traffic would be excluded, but we’ve set <cite>capture-include-streams</cite> to <cite>true</cite> in the configuration so that stream traffic is also captured.</p>
+<p>In this exercise, we will start the BNG Blaster with <cite>-P test.pcap</cite> to generate a PCAP file that includes
+all traffic sent and received by the BNG Blaster. Normally, stream traffic would be excluded, but we’ve
+set <cite>capture-include-streams</cite> to <cite>true</cite> in the configuration so that stream traffic is also captured.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
 cd ~/bngblaster-training/01_basic/03_pcap
 # Start BNG Blaster
 bngblaster -I -S run.sock -C config.json -l debug -P test.pcap
 </pre></div>
 </div>
-<p>Wait for all flows to be verified (indicated by the log message <cite>ALL STREAM TRAFFIC FLOWS VERIFIED</cite>), then stop the process with <cite>Ctrl+C</cite>. Once the BNG Blaster has stopped, examine the PCAP file with tshark.</p>
+<p>Wait for all flows to be verified (indicated by the log message <cite>ALL STREAM TRAFFIC FLOWS VERIFIED</cite>),
+then stop the process with <cite>Ctrl+C</cite>. Once the BNG Blaster has stopped, examine the PCAP file with tshark.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
 tshark -X lua_script:/opt/bbl_header.lua -2 -R bng-blaster -O bng-blaster -r test.pcap
 </pre></div>

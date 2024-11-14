@@ -53,7 +53,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#ospf">03.02. OSPF</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ldp">03.03. LDP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#bgp">03.04. BGP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#convergence">03.05. Convergence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bgp-with-isis">03.05. BGP with ISIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bgp-convergence">03.06. BGP Convergence</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="challenge.html">Challenge</a></li>
@@ -101,6 +102,8 @@ lspgen --level 2 --area 49.0001/24 --connector 1720.1625.5011 -m isis.mrt
 bngblaster -S run.sock -C config.json -l isis
 </pre></div>
 </div>
+<p>In the other shell, use the following commands to interact
+with the active BNG Blaster instance.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
 cd ~/bngblaster-training/03_routing/01_isis
 bngblaster-cli run.sock isis-adjacencies
@@ -141,6 +144,8 @@ lspgen -y --protocol ospf3 --connector 172.16.255.11:172.17.0.1 -m ospf3.mrt
 bngblaster -S run.sock -C config.json -l ospf
 </pre></div>
 </div>
+<p>In the other shell, use the following commands to interact
+with the active BNG Blaster instance.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
 cd ~/bngblaster-training/03_routing/02_ospf
 
@@ -175,6 +180,8 @@ ldpupdate -l 172.16.255.11 -p 192.168.0.0/32 -P 10 -M 10 -f update.ldp
 bngblaster -S run.sock -C config.json -l ldp
 </pre></div>
 </div>
+<p>In the other shell, use the following commands to interact
+with the active BNG Blaster instance.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
 cd ~/bngblaster-training/03_routing/03_ldp
 
@@ -190,7 +197,9 @@ bngblaster-cli run.sock stream-info flow-id 1
 bngblaster-cli run.sock stream-info flow-id 2
 </pre></div>
 </div>
-<p>Use <code class="docutils literal notranslate"><span class="pre">jq</span></code> to check received labels:</p>
+<p>The BNG Blaster monitors each traffic flow, tracking up to two receive labels
+along with the received EXP and TTL values. Use <code class="docutils literal notranslate"><span class="pre">jq</span></code> to check if the received
+labels match with those advertised via LDP:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
 cd ~/bngblaster-training/03_routing/03_ldp
 bngblaster-cli run.sock stream-info flow-id 1 | jq .&#39;[&quot;stream-info&quot;][&quot;rx-mpls1&quot;]&#39;
@@ -201,10 +210,58 @@ bngblaster-cli run.sock stream-info flow-id 2 | jq .&#39;[&quot;stream-info&quot
 <section id="bgp">
 <h2>03.04. BGP<a class="headerlink" href="#bgp" title="Link to this heading"></a></h2>
 <p><a class="reference external" href="https://rtbrick.github.io/bngblaster/routing/bgp.html">https://rtbrick.github.io/bngblaster/routing/bgp.html</a></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
+cd ~/bngblaster-training/03_routing/04_bgp
+
+# Generate BGP updates with corresponding streams
+bgpupdate -f update.bgp -a 65001 -l 100 -n 172.16.2.2 -N 1 -p 10.1.0.0/24 -P 100000 --end-of-rib -s streams.json --stream-interface veth4:10 --stream-pps 0.1
+
+# Start BNG Blaster
+bngblaster -S run.sock -C config.json -T streams.json -l bgp -I
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The configuration shows asymmetric thread allocation, with two TX threads for the traffic source interface
+and two RX threads for the traffic destination interface. All other interfaces and traffic directions are
+handled by the main thread.</p>
+</div>
+<p>In the other shell, use the following commands to interact
+with the active BNG Blaster instance.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
+cd ~/bngblaster-training/03_routing/04_bgp
+bngblaster-cli run.sock bgp-sessions
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; RBFS (op)
+show bgp peer
+show route summary
+</pre></div>
+</div>
 </section>
-<section id="convergence">
-<h2>03.05. Convergence<a class="headerlink" href="#convergence" title="Link to this heading"></a></h2>
+<section id="bgp-with-isis">
+<h2>03.05. BGP with ISIS<a class="headerlink" href="#bgp-with-isis" title="Link to this heading"></a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
+cd ~/bngblaster-training/03_routing/05_bgp_isis
+
+# Generate ISIS Topology, BGP updates and streams
+lspgen -y --level 2 --area 49.0001/24 --connector 1720.1625.5011 -e 10 -m isis.mrt
+bgpupdate -f update.bgp -a 65001 -l 100 -n 192.168.0.0 -N 10 -p 10.1.0.0/24 -P 100000 -s streams.json
+bgpupdate -f update.bgp -a 65001 -l 100 -n 192.168.0.0 -N 10 -m 20001 -M 1000 -p fc66:1::/48 -P 50000 --append -s streams.json --stream-append
+bgpupdate -f update.bgp -a 65001 -l 100 -n 192.168.0.0 -N 10 -m 2 -p fc66:2::/48 -P 50000 --append --end-of-rib -s streams.json --stream-append
+
+# Start BNG Blaster
+bngblaster -S run.sock -C config.json -T streams.json -l bgp
+</pre></div>
+</div>
+</section>
+<section id="bgp-convergence">
+<h2>03.06. BGP Convergence<a class="headerlink" href="#bgp-convergence" title="Link to this heading"></a></h2>
 <p><a class="reference external" href="https://github.com/rtbrick/BGP-CP-DP-Testing">https://github.com/rtbrick/BGP-CP-DP-Testing</a></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
+cd ~/bngblaster-training/03_routing/06_bgp_convergence
+</pre></div>
+</div>
 </section>
 </section>
 

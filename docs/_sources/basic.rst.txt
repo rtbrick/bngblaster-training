@@ -19,7 +19,8 @@ Before starting the tests, use the RBFS BNG CLI to verify that all physical inte
     The `lag-1` interface is expected to be in an operational down state if the BNG Blaster LAG test is not running.
 
 
-Now, enter the following command to start the BNG Blaster. It’s recommended to open the terminal in full-screen mode to ensure the complete ncurses UI fits on the screen.
+Now, enter the following command to start the BNG Blaster. It’s recommended to open the terminal in full-screen mode 
+to ensure the complete ncurses UI fits on the screen.
 
 .. code-block:: none
 
@@ -37,7 +38,8 @@ In the ncurses UI, press ``F2`` to toggle network interface statistics, or use `
 
 In the next step, we’ll interact with the BNG Blaster CLI (https://rtbrick.github.io/bngblaster/api/index.html). 
 
-Open another shell session and enter the following commands.
+In the other shell, use the following commands to interact 
+with the active BNG Blaster instance.
 
 .. code-block:: none
 
@@ -138,7 +140,9 @@ Delete the BNG Blaster instance.
 
 https://rtbrick.github.io/bngblaster/troubleshooting.html#pcap
 
-In this exercise, we will start the BNG Blaster with `-P test.pcap` to generate a PCAP file that includes all traffic sent and received by the BNG Blaster. Normally, stream traffic would be excluded, but we've set `capture-include-streams` to `true` in the configuration so that stream traffic is also captured.
+In this exercise, we will start the BNG Blaster with `-P test.pcap` to generate a PCAP file that includes
+all traffic sent and received by the BNG Blaster. Normally, stream traffic would be excluded, but we've 
+set `capture-include-streams` to `true` in the configuration so that stream traffic is also captured.
 
 .. code-block:: none
 
@@ -148,7 +152,8 @@ In this exercise, we will start the BNG Blaster with `-P test.pcap` to generate 
     bngblaster -I -S run.sock -C config.json -l debug -P test.pcap
 
 
-Wait for all flows to be verified (indicated by the log message `ALL STREAM TRAFFIC FLOWS VERIFIED`), then stop the process with `Ctrl+C`. Once the BNG Blaster has stopped, examine the PCAP file with tshark.
+Wait for all flows to be verified (indicated by the log message `ALL STREAM TRAFFIC FLOWS VERIFIED`), 
+then stop the process with `Ctrl+C`. Once the BNG Blaster has stopped, examine the PCAP file with tshark.
 
 .. code-block:: none
 

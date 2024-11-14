@@ -96,13 +96,21 @@ cd ~/bngblaster-training/02_access/01_pppoe
 bngblaster -S run.sock -J report.json -j sessions -C config.json -I -c 1
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>The parameter <code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">1</span></code> defines how many sessions you would like to start.
 You can increase this number to setup more sessions.</p>
+</div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; RBFS (op)
 show subscriber detail
+show subscriber &lt;subscriber-id&gt; detail
+show subscriber count
 show pppoe session detail
+show pppoe session &lt;subscriber-id&gt; detail
 </pre></div>
 </div>
+<p>In the other shell, use the following commands to interact
+with the active BNG Blaster instance.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
 cd ~/bngblaster-training/02_access/01_pppoe
 bngblaster-cli run.sock session-info session-id 1
@@ -119,6 +127,14 @@ bngblaster-cli run.sock session-info session-id 1 | jq .&#39;[&quot;session-info
 </pre></div>
 </div>
 <p>Checking the Grafana dashboard, you should see an increase in the subscriber count.</p>
+<p>After the test has stopped, use the following RBFS commands to investigate why subscribers were terminated.
+Start with these commands if a subscriber fails to connect or disconnects unexpectedly.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; RBFS (op)
+show subscriber history
+</pre></div>
+</div>
+<p>A list of all termination reasons can be found here:
+<a class="reference external" href="https://documents.rtbrick.com/techdocs/current/radiusservices/radius_control.html#radius-terminate-codes">https://documents.rtbrick.com/techdocs/current/radiusservices/radius_control.html#radius-terminate-codes</a></p>
 </section>
 <section id="l2tp">
 <h2>02.02. L2TP<a class="headerlink" href="#l2tp" title="Link to this heading"></a></h2>
@@ -131,6 +147,13 @@ bngblaster -S run.sock -J report.json -j sessions -C config.json -I  -l l2tp -c 
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; RBFS (op)
 show l2tp tunnel sessions
+show l2tp tunnel &lt;Local TID&gt;
+</pre></div>
+</div>
+<p>After the test has stopped, you can use the following RBFS commands to investigate why the tunnel and session were closed.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; RBFS (op)
+show l2tp tunnel history
+show subscriber history filter type L2TP
 </pre></div>
 </div>
 </section>
@@ -146,6 +169,7 @@ bngblaster -S run.sock -J report.json -j sessions -C config.json -I -l dhcp -l i
 </section>
 <section id="mix">
 <h2>02.04. MIX<a class="headerlink" href="#mix" title="Link to this heading"></a></h2>
+<p>This test generates a mix of PPPoE, L2TP, and IPoE (DHCP) subscribers.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
 cd ~/bngblaster-training/02_access/04_mix
 # Start BNG Blaster
@@ -155,12 +179,18 @@ bngblaster -S run.sock -J report.json -j sessions -C config.json -I -l ip -c 3
 </section>
 <section id="http">
 <h2>02.05. HTTP<a class="headerlink" href="#http" title="Link to this heading"></a></h2>
+<p>This test is designed to evaluate the BNG HTTP redirect service, a common feature in modern BNG deployments.</p>
+<p>In this scenario, the BNG Blaster functions as both an HTTP client and server. Once a subscriber is established,
+the BNG Blaster IPoE client initiates a TCP connection to the HTTP server. However, this connection is intercepted
+and terminated by the BNG, which is controlled via RADIUS and responds with an HTTP 302 redirect.</p>
+<p><a class="reference external" href="https://rtbrick.github.io/bngblaster/http.html">https://rtbrick.github.io/bngblaster/http.html</a></p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
 cd ~/bngblaster-training/02_access/05_http
 # Start BNG Blaster
 bngblaster -S run.sock -C config.json -l http -c 1
 </pre></div>
 </div>
+<p>In the other shell, use the following commands to interact with the active BNG Blaster instance.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
 cd ~/bngblaster-training/02_access/05_http
 bngblaster-cli run.sock http-clients session-id 1
@@ -169,13 +199,17 @@ bngblaster-cli run.sock http-clients session-id 1
 </section>
 <section id="lag">
 <h2>02.06. LAG<a class="headerlink" href="#lag" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://rtbrick.github.io/bngblaster/interfaces.html#link-aggregation-lag">https://rtbrick.github.io/bngblaster/interfaces.html#link-aggregation-lag</a></p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
 cd ~/bngblaster-training/02_access/06_lag
 # Start BNG Blaster
 bngblaster -S run.sock -J report.json -j sessions -C config.json -I -l dhcp -l ip -c 3
 </pre></div>
 </div>
-<p>You may see a warning like this, which can be ignored for now.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You may see a warning like those below, which can be ignored.</p>
+</div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Nov 13 09:03:43.997147 Warning: Interfaces must not have an IP address configured in the host OS!
 Nov 13 09:03:43.997402 Warning: IP address fe80::fcdc:acff:fe79:fcd3 on interface r1-h5 is conflicting!
 Nov 13 09:03:44.040380 LAG (lag1) Interface r1-h5 added
