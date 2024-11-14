@@ -43,7 +43,7 @@
         {
             "local-ipv4-address": "172.16.2.2",
             "peer-ipv4-address": "172.16.2.1",
-            "network-interface": "veth2.10",
+            "network-interface": "veth2:10",
             "raw-update-file": "/home/student/bngblaster-training/03_routing/06_bgp_convergence/rx1.bgp",
             "local-as": 65001,
             "peer-as": 65001
@@ -51,7 +51,7 @@
         {
             "local-ipv4-address": "172.16.3.2",
             "peer-ipv4-address": "172.16.3.1",
-            "network-interface": "veth3.10",
+            "network-interface": "veth3:10",
             "local-as": 65001,
             "peer-as": 65001
         }
