@@ -1,6 +1,8 @@
 01. Basic
 =========
 
+This section covers foundational concepts to ensure participants have a solid understanding of the fundamentals.
+
 01.01. Network Interfaces
 -------------------------
 

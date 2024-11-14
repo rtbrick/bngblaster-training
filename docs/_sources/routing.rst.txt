@@ -1,13 +1,22 @@
 03. Routing
 ===========
 
+This section explores routing protocols, including BGP, ISIS, and more, 
+helping participants understand how to test routing protocols, scaling, 
+and convergence to evaluate network performance and stability.
+
 https://rtbrick.github.io/bngblaster/routing/index.html
+
+The following image illustrates the emulated network topology, 
+which applies to all routing tests in this training.
 
 .. image:: images/routing.png
     :alt: Routing
 
 03.01. ISIS
 -----------
+
+This test is about ISIS with segment routing enabled.
 
 https://rtbrick.github.io/bngblaster/routing/isis.html
 
@@ -63,6 +72,8 @@ Now you can start the BNG Blaster again and verify the ISIS database, routes, an
 03.02. OSPF
 -----------
 
+This test is about OSPFv2 and OSPFv3.
+
 https://rtbrick.github.io/bngblaster/routing/ospf.html
 
 .. code-block:: none
@@ -107,6 +118,8 @@ with the active BNG Blaster instance.
 
 03.03. LDP
 ----------
+
+This test is about LDP.
 
 https://rtbrick.github.io/bngblaster/routing/ldp.html
 

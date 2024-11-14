@@ -86,10 +86,16 @@
              
   <section id="routing">
 <h1>03. Routing<a class="headerlink" href="#routing" title="Link to this heading"></a></h1>
+<p>This section explores routing protocols, including BGP, ISIS, and more,
+helping participants understand how to test routing protocols, scaling,
+and convergence to evaluate network performance and stability.</p>
 <p><a class="reference external" href="https://rtbrick.github.io/bngblaster/routing/index.html">https://rtbrick.github.io/bngblaster/routing/index.html</a></p>
+<p>The following image illustrates the emulated network topology,
+which applies to all routing tests in this training.</p>
 <img alt="Routing" src="_images/routing.png" />
 <section id="isis">
 <h2>03.01. ISIS<a class="headerlink" href="#isis" title="Link to this heading"></a></h2>
+<p>This test is about ISIS with segment routing enabled.</p>
 <p><a class="reference external" href="https://rtbrick.github.io/bngblaster/routing/isis.html">https://rtbrick.github.io/bngblaster/routing/isis.html</a></p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
 cd ~/bngblaster-training/03_routing/01_isis
@@ -131,6 +137,7 @@ lspgen --level 2 --area 49.0001/24 --connector 1720.1600.0011 -m isis.mrt -c 100
 </section>
 <section id="ospf">
 <h2>03.02. OSPF<a class="headerlink" href="#ospf" title="Link to this heading"></a></h2>
+<p>This test is about OSPFv2 and OSPFv3.</p>
 <p><a class="reference external" href="https://rtbrick.github.io/bngblaster/routing/ospf.html">https://rtbrick.github.io/bngblaster/routing/ospf.html</a></p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
 cd ~/bngblaster-training/03_routing/02_ospf
@@ -168,6 +175,7 @@ ping 192.168.0.0 source-ip 172.16.255.1
 </section>
 <section id="ldp">
 <h2>03.03. LDP<a class="headerlink" href="#ldp" title="Link to this heading"></a></h2>
+<p>This test is about LDP.</p>
 <p><a class="reference external" href="https://rtbrick.github.io/bngblaster/routing/ldp.html">https://rtbrick.github.io/bngblaster/routing/ldp.html</a></p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
 cd ~/bngblaster-training/03_routing/03_ldp

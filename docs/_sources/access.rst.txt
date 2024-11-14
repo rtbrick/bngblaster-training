@@ -1,6 +1,12 @@
 02. Access
 ==========
 
+This section focuses on access protocols such as PPPoE, IPoE, and others, 
+providing insight into how these protocols function in a BNG environment. 
+You will learn how to emulate these protocols using BNG Blaster, including 
+configuring the appropriate settings and generating realistic traffic patterns 
+to simulate real-world scenarios.
+
 https://rtbrick.github.io/bngblaster/access/index.html
 
 02.01. PPPoE
