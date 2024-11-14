@@ -11,7 +11,7 @@ https://rtbrick.github.io/bngblaster/access/pppoe.html
 .. code-block:: none
 
     # > Linux
-    cd ~/training/02_access/01_pppoe
+    cd ~/bngblaster-training/02_access/01_pppoe
     # Start BNG Blaster
     bngblaster -S run.sock -J report.json -j sessions -C config.json -I -c 1
 
@@ -29,7 +29,7 @@ You can increase this number to setup more sessions.
 .. code-block:: none
 
     # > Linux
-    cd ~/training/02_access/01_pppoe
+    cd ~/bngblaster-training/02_access/01_pppoe
     bngblaster-cli run.sock session-info session-id 1
 
 
@@ -38,7 +38,7 @@ Use ``jq`` to check received reply-message:
 .. code-block:: none
 
     # > Linux
-    cd ~/training/02_access/01_pppoe
+    cd ~/bngblaster-training/02_access/01_pppoe
     bngblaster-cli run.sock session-info session-id 1 | jq .'["session-info"]["reply-message"]'
 
 
@@ -59,7 +59,7 @@ https://rtbrick.github.io/bngblaster/access/l2tp.html
 .. code-block:: none
 
     # > Linux
-    cd ~/training/02_access/02_l2tp
+    cd ~/bngblaster-training/02_access/02_l2tp
     # Start BNG Blaster
     bngblaster -S run.sock -J report.json -j sessions -C config.json -I  -l l2tp -c 3
 
@@ -78,7 +78,7 @@ https://rtbrick.github.io/bngblaster/access/ipoe.html
 .. code-block:: none
 
     # > Linux
-    cd ~/training/02_access/03_ipoe
+    cd ~/bngblaster-training/02_access/03_ipoe
     # Start BNG Blaster
     bngblaster -S run.sock -J report.json -j sessions -C config.json -I -l dhcp -l ip -c 3
 
@@ -89,7 +89,7 @@ https://rtbrick.github.io/bngblaster/access/ipoe.html
 .. code-block:: none
 
     # > Linux
-    cd ~/training/02_access/04_mix
+    cd ~/bngblaster-training/02_access/04_mix
     # Start BNG Blaster
     bngblaster -S run.sock -J report.json -j sessions -C config.json -I -l ip -c 3
 
@@ -100,7 +100,7 @@ https://rtbrick.github.io/bngblaster/access/ipoe.html
 .. code-block:: none
 
     # > Linux
-    cd ~/training/02_access/05_http
+    cd ~/bngblaster-training/02_access/05_http
     # Start BNG Blaster
     bngblaster -S run.sock -C config.json -l http -c 1
 
@@ -108,7 +108,7 @@ https://rtbrick.github.io/bngblaster/access/ipoe.html
 .. code-block:: none
 
     # > Linux
-    cd ~/training/02_access/05_http
+    cd ~/bngblaster-training/02_access/05_http
     bngblaster-cli run.sock http-clients session-id 1
 
 
@@ -118,7 +118,7 @@ https://rtbrick.github.io/bngblaster/access/ipoe.html
 .. code-block:: none
 
     # > Linux
-    cd ~/training/02_access/06_lag
+    cd ~/bngblaster-training/02_access/06_lag
     # Start BNG Blaster
     bngblaster -S run.sock -J report.json -j sessions -C config.json -I -l dhcp -l ip -c 3
 

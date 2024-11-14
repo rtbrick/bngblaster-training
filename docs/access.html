@@ -90,7 +90,7 @@
 <h2>02.01. PPPoE<a class="headerlink" href="#pppoe" title="Link to this heading"></a></h2>
 <p><a class="reference external" href="https://rtbrick.github.io/bngblaster/access/pppoe.html">https://rtbrick.github.io/bngblaster/access/pppoe.html</a></p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
-cd ~/training/02_access/01_pppoe
+cd ~/bngblaster-training/02_access/01_pppoe
 # Start BNG Blaster
 bngblaster -S run.sock -J report.json -j sessions -C config.json -I -c 1
 </pre></div>
@@ -103,13 +103,13 @@ show pppoe session detail
 </pre></div>
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
-cd ~/training/02_access/01_pppoe
+cd ~/bngblaster-training/02_access/01_pppoe
 bngblaster-cli run.sock session-info session-id 1
 </pre></div>
 </div>
 <p>Use <code class="docutils literal notranslate"><span class="pre">jq</span></code> to check received reply-message:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
-cd ~/training/02_access/01_pppoe
+cd ~/bngblaster-training/02_access/01_pppoe
 bngblaster-cli run.sock session-info session-id 1 | jq .&#39;[&quot;session-info&quot;][&quot;reply-message&quot;]&#39;
 </pre></div>
 </div>
@@ -123,7 +123,7 @@ bngblaster-cli run.sock session-info session-id 1 | jq .&#39;[&quot;session-info
 <h2>02.02. L2TP<a class="headerlink" href="#l2tp" title="Link to this heading"></a></h2>
 <p><a class="reference external" href="https://rtbrick.github.io/bngblaster/access/l2tp.html">https://rtbrick.github.io/bngblaster/access/l2tp.html</a></p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
-cd ~/training/02_access/02_l2tp
+cd ~/bngblaster-training/02_access/02_l2tp
 # Start BNG Blaster
 bngblaster -S run.sock -J report.json -j sessions -C config.json -I  -l l2tp -c 3
 </pre></div>
@@ -137,7 +137,7 @@ show l2tp tunnel sessions
 <h2>02.03. IPoE (DHCP)<a class="headerlink" href="#ipoe-dhcp" title="Link to this heading"></a></h2>
 <p><a class="reference external" href="https://rtbrick.github.io/bngblaster/access/ipoe.html">https://rtbrick.github.io/bngblaster/access/ipoe.html</a></p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
-cd ~/training/02_access/03_ipoe
+cd ~/bngblaster-training/02_access/03_ipoe
 # Start BNG Blaster
 bngblaster -S run.sock -J report.json -j sessions -C config.json -I -l dhcp -l ip -c 3
 </pre></div>
@@ -146,7 +146,7 @@ bngblaster -S run.sock -J report.json -j sessions -C config.json -I -l dhcp -l i
 <section id="mix">
 <h2>02.04. MIX<a class="headerlink" href="#mix" title="Link to this heading"></a></h2>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
-cd ~/training/02_access/04_mix
+cd ~/bngblaster-training/02_access/04_mix
 # Start BNG Blaster
 bngblaster -S run.sock -J report.json -j sessions -C config.json -I -l ip -c 3
 </pre></div>
@@ -155,13 +155,13 @@ bngblaster -S run.sock -J report.json -j sessions -C config.json -I -l ip -c 3
 <section id="http">
 <h2>02.05. HTTP<a class="headerlink" href="#http" title="Link to this heading"></a></h2>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
-cd ~/training/02_access/05_http
+cd ~/bngblaster-training/02_access/05_http
 # Start BNG Blaster
 bngblaster -S run.sock -C config.json -l http -c 1
 </pre></div>
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
-cd ~/training/02_access/05_http
+cd ~/bngblaster-training/02_access/05_http
 bngblaster-cli run.sock http-clients session-id 1
 </pre></div>
 </div>
@@ -169,7 +169,7 @@ bngblaster-cli run.sock http-clients session-id 1
 <section id="lag">
 <h2>02.06. LAG<a class="headerlink" href="#lag" title="Link to this heading"></a></h2>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
-cd ~/training/02_access/06_lag
+cd ~/bngblaster-training/02_access/06_lag
 # Start BNG Blaster
 bngblaster -S run.sock -J report.json -j sessions -C config.json -I -l dhcp -l ip -c 3
 </pre></div>

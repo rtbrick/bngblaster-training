@@ -88,7 +88,7 @@
 <h2>03.01. ISIS<a class="headerlink" href="#isis" title="Link to this heading"></a></h2>
 <p><a class="reference external" href="https://rtbrick.github.io/bngblaster/routing/isis.html">https://rtbrick.github.io/bngblaster/routing/isis.html</a></p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
-cd ~/training/03_routing/01_isis
+cd ~/bngblaster-training/03_routing/01_isis
 
 # Generate ISIS Topology
 lspgen -h
@@ -99,7 +99,7 @@ bngblaster -S run.sock -C config.json -l isis
 </pre></div>
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
-cd ~/training/03_routing/01_isis
+cd ~/bngblaster-training/03_routing/01_isis
 bngblaster-cli run.sock isis-adjacencies
 </pre></div>
 </div>
@@ -127,7 +127,7 @@ lspgen --level 2 --area 49.0001/24 --connector 1720.1600.0011 -m isis.mrt -c 100
 <h2>03.02. OSPF<a class="headerlink" href="#ospf" title="Link to this heading"></a></h2>
 <p><a class="reference external" href="https://rtbrick.github.io/bngblaster/routing/ospf.html">https://rtbrick.github.io/bngblaster/routing/ospf.html</a></p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
-cd ~/training/03_routing/02_ospf
+cd ~/bngblaster-training/03_routing/02_ospf
 
 # Generate OSPF Topology
 lspgen -h
@@ -139,7 +139,7 @@ bngblaster -S run.sock -C config.json -l ospf
 </pre></div>
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
-cd ~/training/03_routing/02_ospf
+cd ~/bngblaster-training/03_routing/02_ospf
 
 bngblaster-cli run.sock ospf-neighbors instance 1
 bngblaster-cli run.sock ospf-neighbors instance 2
@@ -162,7 +162,7 @@ ping 192.168.0.0 source-ip 172.16.255.1
 <h2>03.03. LDP<a class="headerlink" href="#ldp" title="Link to this heading"></a></h2>
 <p><a class="reference external" href="https://rtbrick.github.io/bngblaster/routing/ldp.html">https://rtbrick.github.io/bngblaster/routing/ldp.html</a></p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
-cd ~/training/03_routing/03_ldp
+cd ~/bngblaster-training/03_routing/03_ldp
 
 # Generate ISIS Topology and LDP label mappings
 lspgen -y --level 2 --area 49.0001/24 --connector 1720.1625.5011 -e 10 -m isis.mrt
@@ -173,7 +173,7 @@ bngblaster -S run.sock -C config.json -l ldp
 </pre></div>
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
-cd ~/training/03_routing/03_ldp
+cd ~/bngblaster-training/03_routing/03_ldp
 
 bngblaster-cli run.sock ldp-sessions
 bngblaster-cli run.sock ldp-database ldp-instance-id 1
@@ -181,7 +181,7 @@ bngblaster-cli run.sock ldp-database ldp-instance-id 2
 </pre></div>
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
-cd ~/training/03_routing/03_ldp
+cd ~/bngblaster-training/03_routing/03_ldp
 
 bngblaster-cli run.sock stream-info flow-id 1
 bngblaster-cli run.sock stream-info flow-id 2
@@ -189,7 +189,7 @@ bngblaster-cli run.sock stream-info flow-id 2
 </div>
 <p>Use <code class="docutils literal notranslate"><span class="pre">jq</span></code> to check received labels:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
-cd ~/training/03_routing/03_ldp
+cd ~/bngblaster-training/03_routing/03_ldp
 bngblaster-cli run.sock stream-info flow-id 1 | jq .&#39;[&quot;stream-info&quot;][&quot;rx-mpls1&quot;]&#39;
 bngblaster-cli run.sock stream-info flow-id 2 | jq .&#39;[&quot;stream-info&quot;][&quot;rx-mpls1&quot;]&#39;
 </pre></div>

@@ -11,7 +11,7 @@ https://rtbrick.github.io/bngblaster/routing/isis.html
 .. code-block:: none
 
     # > Linux
-    cd ~/training/03_routing/01_isis
+    cd ~/bngblaster-training/03_routing/01_isis
 
     # Generate ISIS Topology
     lspgen -h
@@ -24,7 +24,7 @@ https://rtbrick.github.io/bngblaster/routing/isis.html
 .. code-block:: none
 
     # > Linux
-    cd ~/training/03_routing/01_isis
+    cd ~/bngblaster-training/03_routing/01_isis
     bngblaster-cli run.sock isis-adjacencies
 
 
@@ -62,7 +62,7 @@ https://rtbrick.github.io/bngblaster/routing/ospf.html
 .. code-block:: none
 
     # > Linux
-    cd ~/training/03_routing/02_ospf
+    cd ~/bngblaster-training/03_routing/02_ospf
 
     # Generate OSPF Topology
     lspgen -h
@@ -76,7 +76,7 @@ https://rtbrick.github.io/bngblaster/routing/ospf.html
 .. code-block:: none
 
     # > Linux
-    cd ~/training/03_routing/02_ospf
+    cd ~/bngblaster-training/03_routing/02_ospf
 
     bngblaster-cli run.sock ospf-neighbors instance 1
     bngblaster-cli run.sock ospf-neighbors instance 2
@@ -104,7 +104,7 @@ https://rtbrick.github.io/bngblaster/routing/ldp.html
 .. code-block:: none
 
     # > Linux
-    cd ~/training/03_routing/03_ldp
+    cd ~/bngblaster-training/03_routing/03_ldp
 
     # Generate ISIS Topology and LDP label mappings
     lspgen -y --level 2 --area 49.0001/24 --connector 1720.1625.5011 -e 10 -m isis.mrt
@@ -117,7 +117,7 @@ https://rtbrick.github.io/bngblaster/routing/ldp.html
 .. code-block:: none
 
     # > Linux
-    cd ~/training/03_routing/03_ldp
+    cd ~/bngblaster-training/03_routing/03_ldp
 
     bngblaster-cli run.sock ldp-sessions
     bngblaster-cli run.sock ldp-database ldp-instance-id 1
@@ -127,7 +127,7 @@ https://rtbrick.github.io/bngblaster/routing/ldp.html
 .. code-block:: none
 
     # > Linux
-    cd ~/training/03_routing/03_ldp
+    cd ~/bngblaster-training/03_routing/03_ldp
 
     bngblaster-cli run.sock stream-info flow-id 1
     bngblaster-cli run.sock stream-info flow-id 2
@@ -138,7 +138,7 @@ Use ``jq`` to check received labels:
 .. code-block:: none
 
     # > Linux
-    cd ~/training/03_routing/03_ldp
+    cd ~/bngblaster-training/03_routing/03_ldp
     bngblaster-cli run.sock stream-info flow-id 1 | jq .'["stream-info"]["rx-mpls1"]'
     bngblaster-cli run.sock stream-info flow-id 2 | jq .'["stream-info"]["rx-mpls1"]'
 
