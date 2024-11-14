@@ -9,7 +9,14 @@ The BNG Blaster training is splited into three sections:
 
 3. **Routing Protocols**: The third section explores routing protocols, including BGP, ISIS, and more, helping participants understand how to test routing protocols, scaling, and convergence to evaluate network performance and stability.
 
-In the exercises, there are commands to enter, where the first line starting with `# > ` indicates whether those commands should be entered in the host shell or the RBFS CLI, specifying the required mode (op or cfg).
+For most exercises in this training, you’ll need to establish three separate SSH connections. 
+Begin by opening three SSH sessions to your setup. Use the first session to launch the BNG Blaster, 
+the second to interact with the BNG Blaster through its CLI, and the third to connect to the BNG CLI,
+which represents our device under test (DUT) running `RBFS <https://documents.rtbrick.com/techdocs/current/platform/intro.html>`_.
+
+Throughout the exercises, commands will be provided. The initial line, marked with `# >`, 
+specifies whether commands should be entered in the host shell or within the RBFS CLI, 
+and also indicates the necessary mode (op or cfg).
 
 .. code-block:: none
 

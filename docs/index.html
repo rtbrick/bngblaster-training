@@ -82,7 +82,13 @@
 <li><p><strong>Access Protocols</strong>: The second section focuses on access protocols such as PPPoE, IPoE, and others, providing insight into how these protocols function in a BNG environment. You will learn how to emulate these protocols using BNG Blaster, including configuring the appropriate settings and generating realistic traffic patterns to simulate real-world scenarios.</p></li>
 <li><p><strong>Routing Protocols</strong>: The third section explores routing protocols, including BGP, ISIS, and more, helping participants understand how to test routing protocols, scaling, and convergence to evaluate network performance and stability.</p></li>
 </ol>
-<p>In the exercises, there are commands to enter, where the first line starting with <a href="#id1"><span class="problematic" id="id2">`</span></a># &gt; ` indicates whether those commands should be entered in the host shell or the RBFS CLI, specifying the required mode (op or cfg).</p>
+<p>For most exercises in this training, you’ll need to establish three separate SSH connections.
+Begin by opening three SSH sessions to your setup. Use the first session to launch the BNG Blaster,
+the second to interact with the BNG Blaster through its CLI, and the third to connect to the BNG CLI,
+which represents our device under test (DUT) running <a class="reference external" href="https://documents.rtbrick.com/techdocs/current/platform/intro.html">RBFS</a>.</p>
+<p>Throughout the exercises, commands will be provided. The initial line, marked with <cite># &gt;</cite>,
+specifies whether commands should be entered in the host shell or within the RBFS CLI,
+and also indicates the necessary mode (op or cfg).</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
 
 # &gt; RBFS CLI (op)

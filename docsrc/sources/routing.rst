@@ -3,6 +3,9 @@
 
 https://rtbrick.github.io/bngblaster/routing/index.html
 
+.. image:: images/routing.png
+    :alt: Routing
+
 03.01. ISIS
 -----------
 
