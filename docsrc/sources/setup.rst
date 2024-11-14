@@ -1,5 +1,5 @@
-00. Setup
-=========
+Setup
+=====
 
 .. image:: images/setup.png
     :alt: Setup

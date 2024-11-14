@@ -1,6 +1,21 @@
 BNG Blaster Training
 ====================
 
+Welcome to our `BNG Blaster Hands-On Training <https://pretalx.com/denog16/talk/JKHX3Q/>`_ 
+workshop at `DENOG16 <https://www.denog.de/de/meetings/denog16/>`_ in Berlin! 
+Each attendee will get access to a dedicated VM setup that includes BNG Blaster, a virtual BNG powered by 
+`RBFS <https://documents.rtbrick.com/techdocs/current/platform/intro.html>`_, a RADIUS server, and various configurations 
+tailored for BNG and routing tests, such as ISIS, BGP, LDP, and more.
+
+We’ll kick off with a brief introduction to the BNG Blaster and the lab environment to ensure everyone is set up for success. 
+There’s also an interactive element to the workshop – a small challenge with hidden flags throughout the setup. 
+Let’s see who can find all the flags first.
+
+This workshop isn’t just focused on BNG as it demonstrates comprehensive routing tests and shows how BNG Blaster has grown into a full network testing suite.
+
+.. image:: images/DENOG16.jpeg
+    :alt: DENOG16
+
 The BNG Blaster training is splited into three sections:
 
 1. **Basics**: The first section covers foundational concepts to ensure participants have a solid understanding of the fundamentals.
@@ -14,7 +29,7 @@ Begin by opening three SSH sessions to your setup. Use the first session to laun
 the second to interact with the BNG Blaster through its CLI, and the third to connect to the BNG CLI,
 which represents our device under test (DUT) running `RBFS <https://documents.rtbrick.com/techdocs/current/platform/intro.html>`_.
 
-Throughout the exercises, commands will be provided. The initial line, marked with `# >`, 
+Throughout the exercises, commands will be provided. The initial line, marked with ``# >``, 
 specifies whether commands should be entered in the host shell or within the RBFS CLI, 
 and also indicates the necessary mode (op or cfg).
 
@@ -38,6 +53,7 @@ Contents
    basic
    access
    routing
+   challenge
 
 Contact
 -------
@@ -58,4 +74,4 @@ Copyright
 ---------
 .. |copy|   unicode:: U+000A9 .. COPYRIGHT SIGN
 
-Copyright |copy| 2020-2024, RtBrick, Inc.
+Copyright |copy| 2024, RtBrick, Inc.
