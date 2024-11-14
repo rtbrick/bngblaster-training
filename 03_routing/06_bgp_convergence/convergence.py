@@ -124,7 +124,7 @@ def main():
     log.info("Init BNG Blaster test: %s", args.instance)
     bbl = bngblaster.bngblaster(args.host, args.port, args.instance)
     log.info("BNG Blaster URL: %s", bbl.base_url)
-    bbl.create("blaster.json")
+    bbl.create("config.json")
     bbl.start(BLASTER_ARGS)
     log.info("BNG Blaster status: %s", bbl.status())
 
