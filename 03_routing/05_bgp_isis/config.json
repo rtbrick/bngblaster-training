@@ -1,0 +1,93 @@
+{
+    "__comment__": "E03_05_BGP_ISIS",
+    "interfaces": {
+        "network": [
+            {
+                "__comment__": "veth2:10 to RBFS hostif-0/0/2",
+                "interface": "veth2",
+                "vlan": 10,
+                "address": "172.16.2.2/24",
+                "gateway": "172.16.2.1",
+                "address-ipv6": "fc66:1337:7331:2::2/64",
+                "gateway-ipv6": "fc66:1337:7331:2::1",
+                "isis-instance-id": 1,
+                "isis-level": 2,
+                "isis-l2-metric": 100
+            },
+            {
+                "__comment__": "veth3:10 to RBFS hostif-0/0/3",
+                "interface": "veth3",
+                "vlan": 10,
+                "address": "172.16.3.2/24",
+                "gateway": "172.16.3.1",
+                "address-ipv6": "fc66:1337:7331:3::2/64",
+                "gateway-ipv6": "fc66:1337:7331:3::1",
+                "isis-instance-id": 1,
+                "isis-level": 2,
+                "isis-l2-metric": 200
+            },
+            {
+                "__comment__": "veth4:10 to RBFS hostif-0/0/4",
+                "interface": "veth4",
+                "vlan": 10,
+                "address": "172.16.4.2/24",
+                "gateway": "172.16.4.1",
+                "address-ipv6": "fc66:1337:7331:4::2/64",
+                "gateway-ipv6": "fc66:1337:7331:4::1",
+                "isis-instance-id": 2,
+                "isis-level": 3,
+                "isis-p2p": false
+            }
+        ]
+    },
+    "isis": [
+        {
+            "instance-id": 1,
+            "area": [
+                "49.0001/24"
+            ],
+            "system-id": "1720.1625.5011",
+            "router-id": "172.16.255.11",
+            "hostname": "BBL1",
+            "sr-base": 100000,
+            "sr-range": 32000,
+            "sr-node-sid": 11,
+            "teardown-time": 30,
+            "external": {
+                "mrt-file": "isis.mrt",
+                "auto-refresh": true,
+                "connections": [
+                    {
+                        "system-id": "1921.6800.0000.00",
+                        "l1-metric": 1000,
+                        "l2-metric": 2000
+                    }
+                ]
+            }
+        },
+        {
+            "instance-id": 2,
+            "area": [
+                "49.0001/24"
+            ],
+            "system-id": "1720.1625.5012",
+            "router-id": "172.16.255.12",
+            "hostname": "BBL2",
+            "sr-base": 100000,
+            "sr-range": 32000,
+            "sr-node-sid": 12,
+            "teardown-time": 30
+        }
+    ],
+    "bgp": [
+        {
+            "local-ipv4-address": "172.16.255.11",
+            "peer-ipv4-address": "172.16.2.1",
+            "network-interface": "veth2.10",
+            "raw-update-file": "update.bgp",
+            "local-as": 65001,
+            "peer-as": 65001,
+            "family": [ "ipv4-unicast",  "ipv6-unicast", "ipv4-labeled-unicast", "ipv6-labeled-unicast" ]
+        }
+    ]
+}

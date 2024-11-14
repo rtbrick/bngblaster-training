@@ -1,0 +1,56 @@
+{
+    "__comment__": "E03_04_BGP",
+    "interfaces": {
+        "network": [
+            {
+                "__comment__": "veth2:10 to RBFS hostif-0/0/2",
+                "interface": "veth2",
+                "vlan": 10,
+                "address": "172.16.2.2/24",
+                "gateway": "172.16.2.1"
+            },
+            {
+                "__comment__": "veth3:10 to RBFS hostif-0/0/3",
+                "interface": "veth3",
+                "vlan": 10,
+                "address": "172.16.3.2/24",
+                "gateway": "172.16.3.1"
+            },
+            {
+                "__comment__": "veth4:10 to RBFS hostif-0/0/4",
+                "interface": "veth4",
+                "vlan": 10,
+                "address": "172.16.4.2/24",
+                "gateway": "172.16.4.1"
+            }
+        ]
+    },
+    "bgp": [
+        {
+            "local-ipv4-address": "172.16.2.2",
+            "peer-ipv4-address": "172.16.2.1",
+            "network-interface": "veth2.10",
+            "raw-update-file": "update.bgp",
+            "local-as": 65001,
+            "peer-as": 65001,
+            "family": [ "ipv4-unicast",  "ipv6-unicast" ]
+        },
+        {
+            "local-ipv4-address": "172.16.3.2",
+            "peer-ipv4-address": "172.16.3.1",
+            "network-interface": "veth3.10",
+            "raw-update-file": "update.bgp",
+            "local-as": 65001,
+            "peer-as": 65001,
+            "family": [ "ipv4-unicast",  "ipv6-unicast" ]
+        },
+        {
+            "local-ipv4-address": "172.16.4.2",
+            "peer-ipv4-address": "172.16.4.1",
+            "network-interface": "veth4.10",
+            "local-as": 65001,
+            "peer-as": 65001,
+            "family": [ "ipv4-unicast",  "ipv6-unicast" ]
+        }
+    ]
+}

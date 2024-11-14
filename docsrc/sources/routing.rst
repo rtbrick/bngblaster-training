@@ -135,8 +135,9 @@ https://rtbrick.github.io/bngblaster/routing/ldp.html
     bngblaster-cli run.sock stream-info flow-id 1
     bngblaster-cli run.sock stream-info flow-id 2
 
-
-Use ``jq`` to check received labels:
+The BNG Blaster monitors each traffic flow, tracking up to two receive labels 
+along with the received EXP and TTL values. Use ``jq`` to check if the received 
+labels match with those advertised via LDP:
 
 .. code-block:: none
 
@@ -151,7 +152,42 @@ Use ``jq`` to check received labels:
 
 https://rtbrick.github.io/bngblaster/routing/bgp.html
 
-03.05. Convergence
-------------------
+.. code-block:: none
+
+    # > Linux
+    cd ~/bngblaster-training/03_routing/04_bgp
+
+    # Generate BGP updates with corresponding streams
+    bgpupdate -f update.bgp -a 65001 -l 100 -n 192.168.0.0 -N 10 -p 10.1.0.0/24 -P 100000 -s streams.json
+
+    # Start BNG Blaster
+    bngblaster -S run.sock -C config.json -T streams.json -l bgp 
+
+
+03.05. BGP with ISIS
+--------------------
+
+.. code-block:: none
+
+    # > Linux
+    cd ~/bngblaster-training/03_routing/05_bgp_isis
+
+    # Generate ISIS Topology, BGP updates and streams
+    lspgen -y --level 2 --area 49.0001/24 --connector 1720.1625.5011 -e 10 -m isis.mrt
+    bgpupdate -f update.bgp -a 65001 -l 100 -n 192.168.0.0 -N 10 -p 10.1.0.0/24 -P 100000 -s streams.json
+    bgpupdate -f update.bgp -a 65001 -l 100 -n 192.168.0.0 -N 10 -m 20001 -M 1000 -p fc66:1::/48 -P 50000 --append -s streams.json --stream-append
+    bgpupdate -f update.bgp -a 65001 -l 100 -n 192.168.0.0 -N 10 -m 2 -p fc66:2::/48 -P 50000 --append --end-of-rib -s streams.json --stream-append
+
+    # Start BNG Blaster
+    bngblaster -S run.sock -C config.json -T streams.json -l bgp 
+
+
+03.06. BGP Convergence
+----------------------
 
 https://github.com/rtbrick/BGP-CP-DP-Testing
+
+.. code-block:: none
+
+    # > Linux
+    cd ~/bngblaster-training/03_routing/06_bgp_convergence
