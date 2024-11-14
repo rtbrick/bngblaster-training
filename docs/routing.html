@@ -264,6 +264,40 @@ bgpupdate -f update.bgp -a 65001 -l 100 -n 192.168.0.0 -N 100 -p fc66:1::/48 -P 
 bngblaster -S run.sock -C config.json -T streams.json -l isis -l bgp -I
 </pre></div>
 </div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
+cd ~/bngblaster-training/03_routing/05_bgp_isis
+bngblaster-cli run.sock stream-info flow-id 1
+</pre></div>
+</div>
+<p>As an optional task, you can stop the BNG Blaster and make the following configuration change.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; RBFS (op)
+switch-mode config
+# &gt; RBFS (cfg)
+set instance default protocol bgp address-family ipv4 unicast resolve-nexthop safi labeled-unicast
+commit switch-to-op
+</pre></div>
+</div>
+<p>Restart the BNG Blaster and review the <code class="docutils literal notranslate"><span class="pre">stream-info</span></code> details to see if any changes have occurred.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
+# Start BNG Blaster
+bngblaster -S run.sock -C config.json -T streams.json -l isis -l bgp -I
+</pre></div>
+</div>
+<p>Now review the <code class="docutils literal notranslate"><span class="pre">stream-info</span></code> output and look for <code class="docutils literal notranslate"><span class="pre">rx-mpls1</span></code>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
+cd ~/bngblaster-training/03_routing/05_bgp_isis
+bngblaster-cli run.sock stream-info flow-id 1
+</pre></div>
+</div>
+<p>Finally, revert the configuration to its original state.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; RBFS (op)
+switch-mode config
+# &gt; RBFS (cfg)
+rollback 1
+show diff set
+commit switch-to-op
+</pre></div>
+</div>
 </section>
 <section id="bgp-convergence">
 <h2>03.06. BGP Convergence<a class="headerlink" href="#bgp-convergence" title="Link to this heading"></a></h2>

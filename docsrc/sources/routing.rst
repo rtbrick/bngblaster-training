@@ -210,7 +210,6 @@ with the active BNG Blaster instance.
     show bgp tcp bgp.iod.1 connection detail
 
 
-
 03.05. BGP with ISIS
 --------------------
 
@@ -229,6 +228,54 @@ the IS-IS network, advertising prefixes with next-hops distributed across the vi
 
     # Start BNG Blaster
     bngblaster -S run.sock -C config.json -T streams.json -l isis -l bgp -I 
+
+
+.. code-block:: none
+
+    # > Linux
+    cd ~/bngblaster-training/03_routing/05_bgp_isis
+    bngblaster-cli run.sock stream-info flow-id 1
+
+
+As an optional task, you can stop the BNG Blaster and make the following configuration change.
+
+.. code-block:: none
+
+    # > RBFS (op)
+    switch-mode config
+    # > RBFS (cfg)
+    set instance default protocol bgp address-family ipv4 unicast resolve-nexthop safi labeled-unicast
+    commit switch-to-op
+
+
+Restart the BNG Blaster and review the ``stream-info`` details to see if any changes have occurred. 
+
+.. code-block:: none
+
+    # > Linux
+    # Start BNG Blaster
+    bngblaster -S run.sock -C config.json -T streams.json -l isis -l bgp -I 
+
+
+Now review the ``stream-info`` output and look for ``rx-mpls1``.
+
+.. code-block:: none
+
+    # > Linux
+    cd ~/bngblaster-training/03_routing/05_bgp_isis
+    bngblaster-cli run.sock stream-info flow-id 1
+
+
+Finally, revert the configuration to its original state.
+
+.. code-block:: none
+
+    # > RBFS (op)
+    switch-mode config
+    # > RBFS (cfg)
+    rollback 1
+    show diff set
+    commit switch-to-op
 
 
 03.06. BGP Convergence

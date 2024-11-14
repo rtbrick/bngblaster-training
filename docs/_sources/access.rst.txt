@@ -169,6 +169,12 @@ In the other shell, use the following commands to interact with the active BNG B
 02.06. LAG
 ----------
 
+The primary goal of this test is to demonstrate that BNG Blaster can independently 
+support Link Aggregation Group (LAG) functionality, without relying on the host OS 
+to provide LAG capabilities. This includes full support for access and routing protocols, 
+allowing BNG Blaster to handle LAG configurations directly, showcasing its versatility 
+and robustness in handling complex network scenarios.
+
 https://rtbrick.github.io/bngblaster/interfaces.html#link-aggregation-lag
 
 .. code-block:: none
