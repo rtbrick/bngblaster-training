@@ -1,23 +1,37 @@
 {
     "__comment__": "E03_06_BGP_CONVERGENCE",
     "interfaces": {
+        "links": [
+            {
+                "interface": "veth2",
+                "rx-threads": 4
+            },
+            {
+                "interface": "veth3",
+                "rx-threads": 4
+            },
+            {
+                "interface": "veth4",
+                "tx-threads": 4
+            }
+        ],
         "network": [
             {
-                "__comment__": "veth2:10 to RBFS hostif-0/0/2",
+                "__comment__": "veth2:10 to RBFS hostif-0/0/2 (RX1)",
                 "interface": "veth2",
                 "vlan": 10,
                 "address": "172.16.2.2/24",
                 "gateway": "172.16.2.1"
             },
             {
-                "__comment__": "veth3:10 to RBFS hostif-0/0/3",
+                "__comment__": "veth3:10 to RBFS hostif-0/0/3 (RX2)",
                 "interface": "veth3",
                 "vlan": 10,
                 "address": "172.16.3.2/24",
                 "gateway": "172.16.3.1"
             },
             {
-                "__comment__": "veth4:10 to RBFS hostif-0/0/4",
+                "__comment__": "veth4:10 to RBFS hostif-0/0/4 (TX)",
                 "interface": "veth4",
                 "vlan": 10,
                 "address": "172.16.4.2/24",
@@ -30,27 +44,22 @@
             "local-ipv4-address": "172.16.2.2",
             "peer-ipv4-address": "172.16.2.1",
             "network-interface": "veth2.10",
-            "raw-update-file": "update.bgp",
+            "raw-update-file": "/home/student/bngblaster-training/03_routing/06_convergence/rx1.bgp",
             "local-as": 65001,
-            "peer-as": 65001,
-            "family": [ "ipv4-unicast",  "ipv6-unicast" ]
+            "peer-as": 65001
         },
         {
             "local-ipv4-address": "172.16.3.2",
             "peer-ipv4-address": "172.16.3.1",
             "network-interface": "veth3.10",
-            "raw-update-file": "update.bgp",
             "local-as": 65001,
-            "peer-as": 65001,
-            "family": [ "ipv4-unicast",  "ipv6-unicast" ]
-        },
-        {
-            "local-ipv4-address": "172.16.4.2",
-            "peer-ipv4-address": "172.16.4.1",
-            "network-interface": "veth4.10",
-            "local-as": 65001,
-            "peer-as": 65001,
-            "family": [ "ipv4-unicast",  "ipv6-unicast" ]
+            "peer-as": 65001
         }
+    ],
+    "bgp-raw-update-files": [
+        "/home/student/bngblaster-training/03_routing/06_convergence/rx1.bgp",
+        "/home/student/bngblaster-training/03_routing/06_convergence/rx2.bgp",
+        "/home/student/bngblaster-training/03_routing/06_convergence/rx1-withdraw.bgp",
+        "/home/student/bngblaster-training/03_routing/06_convergence/rx2-withdraw.bgp"
     ]
 }

@@ -60,6 +60,8 @@ Check RADIUS logs.
 
 Checking the Grafana dashboard, you should see an increase in the subscriber count.
 
+To stop the BNG Blaster, press ``Ctrl+C`` or use the command ``bngblaster-cli run.sock test-stop``.
+
 After the test has stopped, use the following RBFS commands to investigate why subscribers were terminated. 
 Start with these commands if a subscriber fails to connect or disconnects unexpectedly.
 
@@ -93,6 +95,8 @@ https://rtbrick.github.io/bngblaster/access/l2tp.html
     show l2tp tunnel <Local TID>
 
 
+To stop the BNG Blaster, press ``Ctrl+C`` or use the command ``bngblaster-cli run.sock test-stop``.
+
 After the test has stopped, you can use the following RBFS commands to investigate why the tunnel and session were closed.
 
 .. code-block:: none
@@ -125,7 +129,7 @@ This test generates a mix of PPPoE, L2TP, and IPoE (DHCP) subscribers.
     # > Linux
     cd ~/bngblaster-training/02_access/04_mix
     # Start BNG Blaster
-    bngblaster -S run.sock -J report.json -j sessions -C config.json -I -l ip -c 3
+    bngblaster -S run.sock -J report.json -j sessions -C config.json -I -l ip -c 90
 
 
 02.05. HTTP

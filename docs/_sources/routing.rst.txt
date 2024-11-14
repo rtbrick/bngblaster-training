@@ -192,12 +192,17 @@ with the active BNG Blaster instance.
 .. code-block:: none
 
     # > RBFS (op)
-    show bgp peer 
     show route summary
+    show bgp peer 
+    show bgp tcp bgp.iod.1 connection detail
+
 
 
 03.05. BGP with ISIS
 --------------------
+
+This test simulates a BGP session initiated from an address that is reachable exclusively through 
+the IS-IS network, advertising prefixes with next-hops distributed across the virtual IS-IS topology.
 
 .. code-block:: none
 
@@ -205,13 +210,23 @@ with the active BNG Blaster instance.
     cd ~/bngblaster-training/03_routing/05_bgp_isis
 
     # Generate ISIS Topology, BGP updates and streams
-    lspgen -y --level 2 --area 49.0001/24 --connector 1720.1625.5011 -e 10 -m isis.mrt
-    bgpupdate -f update.bgp -a 65001 -l 100 -n 192.168.0.0 -N 10 -p 10.1.0.0/24 -P 100000 -s streams.json
-    bgpupdate -f update.bgp -a 65001 -l 100 -n 192.168.0.0 -N 10 -m 20001 -M 1000 -p fc66:1::/48 -P 50000 --append -s streams.json --stream-append
-    bgpupdate -f update.bgp -a 65001 -l 100 -n 192.168.0.0 -N 10 -m 2 -p fc66:2::/48 -P 50000 --append --end-of-rib -s streams.json --stream-append
+    lspgen --level 2 --area 49.0001/24 --connector 1720.1625.5011 -m isis.mrt -c 100
+    bgpupdate -f update.bgp -a 65001 -l 100 -n 192.168.0.0 -N 100 -p 10.1.0.0/24 -P 100000 -s streams.json --stream-interface veth4:10 --stream-pps 0.1
+    bgpupdate -f update.bgp -a 65001 -l 100 -n 192.168.0.0 -N 100 -m 26001 -M 100 -p fc66:1::/48 -P 50000 --append -s streams.json --stream-interface veth4:10 --stream-pps 0.1 --stream-append
+    bgpupdate -f update.bgp -a 65001 -l 100 -n 192.168.0.0 -N 100 -m 2 -p fc66:2::/48 -P 50000 --append --end-of-rib -s streams.json --stream-interface veth4:10 --stream-pps 0.1 --stream-append
 
     # Start BNG Blaster
-    bngblaster -S run.sock -C config.json -T streams.json -l bgp 
+    bngblaster -S run.sock -C config.json -T streams.json -l isis -l bgp
+
+
+.. code-block:: none
+
+    # > Linux
+    cd ~/bngblaster-training/03_routing/05_bgp_isis
+    bngblaster-cli run.sock stream-stats
+    bngblaster-cli run.sock stream-info flow-id 1
+    bngblaster-cli run.sock stream-info flow-id 2
+    # ...
 
 
 03.06. BGP Convergence
@@ -223,3 +238,5 @@ https://github.com/rtbrick/BGP-CP-DP-Testing
 
     # > Linux
     cd ~/bngblaster-training/03_routing/06_bgp_convergence
+
+

@@ -127,6 +127,7 @@ bngblaster-cli run.sock session-info session-id 1 | jq .&#39;[&quot;session-info
 </pre></div>
 </div>
 <p>Checking the Grafana dashboard, you should see an increase in the subscriber count.</p>
+<p>To stop the BNG Blaster, press <code class="docutils literal notranslate"><span class="pre">Ctrl+C</span></code> or use the command <code class="docutils literal notranslate"><span class="pre">bngblaster-cli</span> <span class="pre">run.sock</span> <span class="pre">test-stop</span></code>.</p>
 <p>After the test has stopped, use the following RBFS commands to investigate why subscribers were terminated.
 Start with these commands if a subscriber fails to connect or disconnects unexpectedly.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; RBFS (op)
@@ -150,6 +151,7 @@ show l2tp tunnel sessions
 show l2tp tunnel &lt;Local TID&gt;
 </pre></div>
 </div>
+<p>To stop the BNG Blaster, press <code class="docutils literal notranslate"><span class="pre">Ctrl+C</span></code> or use the command <code class="docutils literal notranslate"><span class="pre">bngblaster-cli</span> <span class="pre">run.sock</span> <span class="pre">test-stop</span></code>.</p>
 <p>After the test has stopped, you can use the following RBFS commands to investigate why the tunnel and session were closed.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; RBFS (op)
 show l2tp tunnel history
@@ -173,7 +175,7 @@ bngblaster -S run.sock -J report.json -j sessions -C config.json -I -l dhcp -l i
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
 cd ~/bngblaster-training/02_access/04_mix
 # Start BNG Blaster
-bngblaster -S run.sock -J report.json -j sessions -C config.json -I -l ip -c 3
+bngblaster -S run.sock -J report.json -j sessions -C config.json -I -l ip -c 90
 </pre></div>
 </div>
 </section>

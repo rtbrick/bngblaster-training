@@ -42,7 +42,6 @@ and also indicates the necessary mode (op or cfg).
    # > RBFS CLI (cfg)
 
 
-
 Contents
 --------
 
@@ -60,6 +59,11 @@ Contact
 
 * Mail: bngblaster@rtbrick.com
 * Chat: `matrix.org #bngblaster <https://matrix.to/#/#bngblaster:matrix.org>`_
+
+Sources
+-------
+
+https://github.com/rtbrick/bngblaster-training
 
 License
 -------

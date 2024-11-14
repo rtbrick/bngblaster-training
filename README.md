@@ -1,5 +1,7 @@
 # BNG Blaster Training
 
+https://rtbrick.github.io/bngblaster-training
+
 ## License
 
 BNG Blaster is licensed under the BSD 3-Clause License, which means that you are free to get and use it for
@@ -9,7 +11,7 @@ See the LICENSE file for more details.
 
 ## Copyright
 
-Copyright (C) 2020-2024, RtBrick, Inc.
+Copyright (C) 2024, RtBrick, Inc.
 
 ## Contact
 
