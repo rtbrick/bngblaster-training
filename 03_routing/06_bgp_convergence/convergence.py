@@ -112,10 +112,10 @@ def main():
     parser = argparse.ArgumentParser(description=DESCRIPTION)
     parser.add_argument('--host', type=str, default="127.0.0.1", help="BNG Blaster Controller")
     parser.add_argument('--port', type=int, default=8001, help="BNG Blaster Controller Port")
-    parser.add_argument('--instance', type=str, default="convergence", help="BNG Blaster Controller Instance")
+    parser.add_argument('--instance', type=str, default="E03_06_BGP_CONVERGENCE", help="BNG Blaster Controller Instance")
     parser.add_argument('--rx1ip', type=str, default="172.16.2.2", help="RX1 local IP")
     parser.add_argument('--rx2ip', type=str, default="172.16.3.2", help="RX2 local IP")
-    parser.add_argument('--timeout', type=int, default=120, help='Max convergence time expected')
+    parser.add_argument('--timeout', type=int, default=300, help='Max convergence time expected')
     parser.add_argument('--log-level', type=str, default='info', choices=LOG_LEVELS.keys(), help='logging Level')
 
     args = parser.parse_args()
