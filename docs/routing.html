@@ -257,20 +257,11 @@ cd ~/bngblaster-training/03_routing/05_bgp_isis
 
 # Generate ISIS Topology, BGP updates and streams
 lspgen --level 2 --area 49.0001/24 --connector 1720.1625.5011 -m isis.mrt -c 100
-bgpupdate -f update.bgp -a 65001 -l 100 -n 192.168.0.0 -N 100 -p 10.1.0.0/24 -P 100000 -s streams.json --stream-interface veth4:10 --stream-pps 0.1
-bgpupdate -f update.bgp -a 65001 -l 100 -n 192.168.0.0 -N 100 -m 26001 -M 100 -p fc66:1::/48 -P 50000 --append -s streams.json --stream-interface veth4:10 --stream-pps 0.1 --stream-append
-bgpupdate -f update.bgp -a 65001 -l 100 -n 192.168.0.0 -N 100 -m 2 -p fc66:2::/48 -P 50000 --append --end-of-rib -s streams.json --stream-interface veth4:10 --stream-pps 0.1 --stream-append
+bgpupdate -f update.bgp -a 65001 -l 100 -n 192.168.0.0 -N 100 -p 10.1.0.0/24 -P 10000 -s streams.json --stream-interface veth4:10
+bgpupdate -f update.bgp -a 65001 -l 100 -n 192.168.0.0 -N 100 -p fc66:1::/48 -P 10000 --append --end-of-rib -s streams.json --stream-interface veth4:10 --stream-append
 
 # Start BNG Blaster
-bngblaster -S run.sock -C config.json -T streams.json -l isis -l bgp
-</pre></div>
-</div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
-cd ~/bngblaster-training/03_routing/05_bgp_isis
-bngblaster-cli run.sock stream-stats
-bngblaster-cli run.sock stream-info flow-id 1
-bngblaster-cli run.sock stream-info flow-id 2
-# ...
+bngblaster -S run.sock -C config.json -T streams.json -l isis -l bgp -I
 </pre></div>
 </div>
 </section>
@@ -279,7 +270,17 @@ bngblaster-cli run.sock stream-info flow-id 2
 <p><a class="reference external" href="https://github.com/rtbrick/BGP-CP-DP-Testing">https://github.com/rtbrick/BGP-CP-DP-Testing</a></p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
 cd ~/bngblaster-training/03_routing/06_bgp_convergence
+
+# This will take a while—perfect time to grab a coffee!
+./generate_routes.sh
+
+# Start test
+# ./convergence.py
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can use the <code class="docutils literal notranslate"><span class="pre">./stop.sh</span></code> script to manually force-stop the test.</p>
 </div>
 </section>
 </section>
