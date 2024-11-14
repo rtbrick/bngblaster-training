@@ -44,7 +44,7 @@
             "local-ipv4-address": "172.16.2.2",
             "peer-ipv4-address": "172.16.2.1",
             "network-interface": "veth2.10",
-            "raw-update-file": "/home/student/bngblaster-training/03_routing/06_convergence/rx1.bgp",
+            "raw-update-file": "/home/student/bngblaster-training/03_routing/06_bgp_convergence/rx1.bgp",
             "local-as": 65001,
             "peer-as": 65001
         },
@@ -57,9 +57,9 @@
         }
     ],
     "bgp-raw-update-files": [
-        "/home/student/bngblaster-training/03_routing/06_convergence/rx1.bgp",
-        "/home/student/bngblaster-training/03_routing/06_convergence/rx2.bgp",
-        "/home/student/bngblaster-training/03_routing/06_convergence/rx1-withdraw.bgp",
-        "/home/student/bngblaster-training/03_routing/06_convergence/rx2-withdraw.bgp"
+        "/home/student/bngblaster-training/03_routing/06_bgp_convergence/rx1.bgp",
+        "/home/student/bngblaster-training/03_routing/06_bgp_convergence/rx2.bgp",
+        "/home/student/bngblaster-training/03_routing/06_bgp_convergence/rx1-withdraw.bgp",
+        "/home/student/bngblaster-training/03_routing/06_bgp_convergence/rx2-withdraw.bgp"
     ]
 }

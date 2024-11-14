@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# This is a modified version of the following script:
 # https://github.com/rtbrick/BGP-CP-DP-Testing/blob/main/convergence.py
 """
 BNG Blaster - BGP Convergence Report 
@@ -20,6 +21,8 @@ import bngblaster
 DESCRIPTION = """
 BNG Blaster - BGP Convergence Report
 """
+
+TEST_DIR = "/home/student/bngblaster-training/03_routing/06_bgp_convergence"
 LOG_LEVELS = {
     'warning': logging.WARNING,
     'info': logging.INFO,
@@ -34,7 +37,7 @@ BLASTER_ARGS = {
         "streams"
     ],
     "report": True,
-    "stream_config": "/tmp/streams.json"
+    "stream_config": TEST_DIR + "/streams.json"
 }
 
 def init_logging(log_level: int) -> logging.Logger:
@@ -107,11 +110,11 @@ def log_interface_pps(bbl: bngblaster.bngblaster, log: logging.Logger):
 def main():
     # parse arguments
     parser = argparse.ArgumentParser(description=DESCRIPTION)
-    parser.add_argument('--host', type=str, required=True, help="BNG Blaster Controller")
+    parser.add_argument('--host', type=str, default="127.0.0.1", help="BNG Blaster Controller")
     parser.add_argument('--port', type=int, default=8001, help="BNG Blaster Controller Port")
     parser.add_argument('--instance', type=str, default="convergence", help="BNG Blaster Controller Instance")
-    parser.add_argument('--rx1ip', type=str, default="192.0.2.194", help="RX1 local IP")
-    parser.add_argument('--rx2ip', type=str, default="192.0.2.202", help="RX2 local IP")
+    parser.add_argument('--rx1ip', type=str, default="172.16.2.2", help="RX1 local IP")
+    parser.add_argument('--rx2ip', type=str, default="172.16.3.2", help="RX2 local IP")
     parser.add_argument('--timeout', type=int, default=120, help='Max convergence time expected')
     parser.add_argument('--log-level', type=str, default='info', choices=LOG_LEVELS.keys(), help='logging Level')
 
@@ -131,7 +134,7 @@ def main():
     t2 = 0
     t3 = 0
     log.info("Send BGP updates from RX2")
-    session = bgp_update(bbl, args.rx2ip, "/tmp/rx2.bgp")
+    session = bgp_update(bbl, args.rx2ip, TEST_DIR + "/rx2.bgp")
     log.info("Verify traffic streams")
 
     response = bbl.command("stream-stats")
@@ -160,7 +163,7 @@ def main():
     log_interface_pps(bbl, log)
 
     log.info("Withdraw prefixes from RX1")
-    session = bgp_update(bbl, args.rx1ip, "/tmp/rx1-withdraw.bgp")
+    session = bgp_update(bbl, args.rx1ip, TEST_DIR + "/rx1-withdraw.bgp")
     t2 = session["raw-update-start-epoch"]
 
     log.info("Wait %s seconds", args.timeout)
@@ -169,7 +172,7 @@ def main():
         log_interface_pps(bbl, log)
 
     log.info("Withdraw prefixes from RX2")
-    session = bgp_update(bbl, args.rx2ip, "/tmp/rx2-withdraw.bgp")
+    session = bgp_update(bbl, args.rx2ip, TEST_DIR + "/rx2-withdraw.bgp")
     t3 = session["raw-update-start-epoch"]
 
     log.info("Wait %s seconds", args.timeout)
