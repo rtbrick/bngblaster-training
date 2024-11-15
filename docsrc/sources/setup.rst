@@ -41,7 +41,17 @@ for use with the BNG Blaster.
 RtBrick Full Stack
 ------------------
 
-The virtual BNG is powered by *RtBrick Full Stack (RBFS)*, a cutting-edge network operating system designed for disaggregated switches. Upon logging in, you will be placed directly into the *CLI* environment, as your user does not have shell access.
+The virtual BNG is powered by *RtBrick Full Stack (RBFS)*, a cutting-edge network operating system designed for disaggregated switches.
+Upon logging in, you will be placed directly into the *CLI* environment, as your user does not have shell access.
+
+Documentation
+~~~~~~~~~~~~~
+
+- RBFS Documentation: https://documents.rtbrick.com/techdocs/current/index.html
+- RBFS Training: https://documents.rtbrick.com/trainings/current/index.html
+
+Navigating the CLI
+~~~~~~~~~~~~~~~~~~
 
 In RBFS, the CLI prompt indicates the mode you are currently in:
 
@@ -50,10 +60,8 @@ In RBFS, the CLI prompt indicates the mode you are currently in:
 
 You can easily switch between these modes using the command ``switch-mode <mode>``.
 
-Navigating the CLI
-~~~~~~~~~~~~~~~~~~
-
-RBFS CLI is intuitive and supports features like *tab-completion* and the ``?`` command to explore available options and commands. This makes it simple to navigate and discover functionality as you go.
+RBFS CLI is intuitive and supports features like *tab-completion* and the ``?`` command 
+to explore available options and commands. This makes it simple to navigate and discover functionality as you go.
 
 Configuration Mode
 ~~~~~~~~~~~~~~~~~~
@@ -87,8 +95,3 @@ Managing Configuration Changes
 RBFS offers a streamlined and robust experience for managing disaggregated networking environments, 
 ensuring flexibility and control while maintaining an intuitive CLI interface.
 
-Documentation
-~~~~~~~~~~~~~
-
-- RBFS Documentation: https://documents.rtbrick.com/techdocs/current/index.html
-- RBFS Training: https://documents.rtbrick.com/trainings/current/index.html
