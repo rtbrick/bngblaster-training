@@ -311,7 +311,7 @@ where BGP updates occur, to the data-plane, where actual data packet forwarding 
     ./generate_routes.sh
 
     # Start test
-    # ./convergence.py
+    ./convergence.py
 
 .. note::
     
