@@ -42,13 +42,28 @@ RtBrick Full Stack
 ------------------
 
 The virtual BNG is powered by *RtBrick Full Stack (RBFS)*, a cutting-edge network operating system designed for disaggregated switches.
-Upon logging in, you will be placed directly into the *CLI* environment, as your user does not have shell access.
 
 Documentation
 ~~~~~~~~~~~~~
 
 - RBFS Documentation: https://documents.rtbrick.com/techdocs/current/index.html
 - RBFS Training: https://documents.rtbrick.com/trainings/current/index.html
+
+Login
+~~~~~
+
+To connect to the virtual BNG (**r1**) from the host, use the command ``ssh student@r1`` with the password ``student``.
+
+.. code-block:: none
+
+    student@denog16-student-01:~$ ssh student@r1 
+    student@r1's password: student
+    student@r1>denog16-student-01: op> 
+
+
+Upon logging in, you will be placed directly into the *CLI* environment, 
+as your user does not have shell access.
+
 
 Navigating the CLI
 ~~~~~~~~~~~~~~~~~~

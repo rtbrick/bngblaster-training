@@ -188,6 +188,14 @@ ldpupdate -l 172.16.255.11 -p 192.168.0.0/32 -P 10 -M 10 -f update.ldp
 bngblaster -S run.sock -C config.json -l ldp
 </pre></div>
 </div>
+<p>Execute the following commands within the RBFS CLI:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; RBFS (op)
+show ldp neighbor
+show ldp session
+show ldp tcp connection detail
+show ldp route
+</pre></div>
+</div>
 <p>In the other shell, use the following commands to interact
 with the active BNG Blaster instance.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux

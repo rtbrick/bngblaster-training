@@ -136,6 +136,17 @@ https://rtbrick.github.io/bngblaster/routing/ldp.html
     bngblaster -S run.sock -C config.json -l ldp
 
 
+Execute the following commands within the RBFS CLI:
+
+.. code-block:: none
+
+    # > RBFS (op)
+    show ldp neighbor
+    show ldp session
+    show ldp tcp connection detail
+    show ldp route
+
+
 In the other shell, use the following commands to interact 
 with the active BNG Blaster instance.
 

@@ -71,6 +71,8 @@ For the next steps, switch to the RBFS BNG CLI and use the following commands to
 
 Now, let's add a static route with the BNG Blaster as the next hop and observe the results.
 
+https://documents.rtbrick.com/techdocs/current/staticroutingug/staticrouting_config.html
+
 .. code-block:: none
 
     # > RBFS (op)

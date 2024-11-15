@@ -49,6 +49,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#host">Host</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rtbrick-full-stack">RtBrick Full Stack</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#documentation">Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#login">Login</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#navigating-the-cli">Navigating the CLI</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#configuration-mode">Configuration Mode</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#managing-configuration-changes">Managing Configuration Changes</a></li>
@@ -120,14 +121,24 @@ for use with the BNG Blaster.</p>
 </section>
 <section id="rtbrick-full-stack">
 <h2>RtBrick Full Stack<a class="headerlink" href="#rtbrick-full-stack" title="Link to this heading"></a></h2>
-<p>The virtual BNG is powered by <em>RtBrick Full Stack (RBFS)</em>, a cutting-edge network operating system designed for disaggregated switches.
-Upon logging in, you will be placed directly into the <em>CLI</em> environment, as your user does not have shell access.</p>
+<p>The virtual BNG is powered by <em>RtBrick Full Stack (RBFS)</em>, a cutting-edge network operating system designed for disaggregated switches.</p>
 <section id="documentation">
 <h3>Documentation<a class="headerlink" href="#documentation" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>RBFS Documentation: <a class="reference external" href="https://documents.rtbrick.com/techdocs/current/index.html">https://documents.rtbrick.com/techdocs/current/index.html</a></p></li>
 <li><p>RBFS Training: <a class="reference external" href="https://documents.rtbrick.com/trainings/current/index.html">https://documents.rtbrick.com/trainings/current/index.html</a></p></li>
 </ul>
+</section>
+<section id="login">
+<h3>Login<a class="headerlink" href="#login" title="Link to this heading"></a></h3>
+<p>To connect to the virtual BNG (<strong>r1</strong>) from the host, use the command <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">student&#64;r1</span></code> with the password <code class="docutils literal notranslate"><span class="pre">student</span></code>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>student@denog16-student-01:~$ ssh student@r1
+student@r1&#39;s password: student
+student@r1&gt;denog16-student-01: op&gt;
+</pre></div>
+</div>
+<p>Upon logging in, you will be placed directly into the <em>CLI</em> environment,
+as your user does not have shell access.</p>
 </section>
 <section id="navigating-the-cli">
 <h3>Navigating the CLI<a class="headerlink" href="#navigating-the-cli" title="Link to this heading"></a></h3>
