@@ -74,7 +74,18 @@
             "sr-base": 100000,
             "sr-range": 32000,
             "sr-node-sid": 12,
-            "teardown-time": 30
+            "teardown-time": 30,
+            "external": {
+                "mrt-file": "isis_bbl2.mrt",
+                "auto-refresh": true,
+                "connections": [
+                    {
+                        "system-id": "1921.6822.2000.00",
+                        "l1-metric": 1000,
+                        "l2-metric": 2000
+                    }
+                ]
+            }
         }
     ],
     "streams": [
