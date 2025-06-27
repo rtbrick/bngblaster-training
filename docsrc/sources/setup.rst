@@ -56,9 +56,9 @@ To connect to the virtual BNG (**r1**) from the host, use the command ``ssh stud
 
 .. code-block:: none
 
-    student@denog16-student-01:~$ ssh student@r1 
+    student@netuk2-student-01:~$ ssh student@r1 
     student@r1's password: student
-    student@r1>denog16-student-01: op> 
+    student@r1>netuk2-student-01: op> 
 
 
 Upon logging in, you will be placed directly into the *CLI* environment, 

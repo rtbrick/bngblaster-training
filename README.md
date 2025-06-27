@@ -11,7 +11,7 @@ See the LICENSE file for more details.
 
 ## Copyright
 
-Copyright (C) 2024, RtBrick, Inc.
+Copyright (C) 2025, RtBrick, Inc.
 
 ## Contact
 
