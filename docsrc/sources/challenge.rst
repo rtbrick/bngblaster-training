@@ -9,9 +9,7 @@ Participants can uncover these secrets by using **RBFS CLI commands**.
 The secrets are distributed across the training exercises, covering 
 both **access** and **routing** scenarios.
 
-If you’re the first to discover all the secrets, notify one of the trainers 
-to claim a **special prize**. Happy hunting! 🚀
-
+Happy hunting! 🚀
 
 .. raw:: html
 

@@ -2,7 +2,7 @@ BNG Blaster Training
 ====================
 
 Welcome to our `BNG Blaster Hands-On Training <https://indico.netuk.org/event/2/contributions/19/>`_ 
-workshop at `NetUK2 <https://indico.netuk.org/event/2/>`_ in London! 
+workshop at `NetUK2 <https://www.netuk.org>`_ in London! 
 Each attendee will get access to a dedicated VM setup that includes BNG Blaster, a virtual BNG powered by 
 `RBFS <https://documents.rtbrick.com/techdocs/current/platform/intro.html>`_, a RADIUS server, and various configurations 
 tailored for BNG and routing tests, such as ISIS, BGP, LDP, and more.
