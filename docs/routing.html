@@ -130,7 +130,7 @@ ping 192.168.0.0 source-ip 172.16.255.1
 or amount of external routes (<code class="docutils literal notranslate"><span class="pre">-e</span></code>), where external routes are automatically equally distributed
 over all nodes. Meaning 1000 nodes with 1000 external routes results into one external route per node.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># &gt; Linux
-lspgen --level 2 --area 49.0001/24 --connector 1720.1600.0011 -m isis.mrt -c 1000 -e 1000
+lspgen --level 2 --area 49.0001/24 --connector 1720.1625.5011 -m isis.mrt -c 1000 -e 1000
 </pre></div>
 </div>
 <p>Now you can start the BNG Blaster again and verify the ISIS database, routes, and the Grafana dashboard.</p>

@@ -64,7 +64,7 @@ over all nodes. Meaning 1000 nodes with 1000 external routes results into one ex
 .. code-block:: none
 
     # > Linux
-    lspgen --level 2 --area 49.0001/24 --connector 1720.1600.0011 -m isis.mrt -c 1000 -e 1000
+    lspgen --level 2 --area 49.0001/24 --connector 1720.1625.5011 -m isis.mrt -c 1000 -e 1000
 
 
 Now you can start the BNG Blaster again and verify the ISIS database, routes, and the Grafana dashboard.

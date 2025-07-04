@@ -59,6 +59,7 @@ Happy hunting! 🚀
 
                 // Check if all fields are verified
                 if (validatedFields.size === 5) {
+                    document.getElementById("form-container").style.display = "none";
                     document.getElementById("congratulations").style.display = "block";
                 }
             } else {
@@ -100,7 +101,10 @@ Happy hunting! 🚀
         </div>
     </div>
     <div id="congratulations" class="success" style="display: none;">
-        Congratulations! All secrets are correct.
+        Elementary, my dear engineer. Hidden in packets, configs, 
+        and traces were clues only a real BNG mind could find. 
+        You, my friend, have earned your seat in the network detective club.”
+        <img src="_static/network_detective.png" alt="Network Detective" style="margin-top:20px; max-width:100%; height:auto; border: 2px solid #ccc; border-radius: 5px;">
     </div>
 
 
