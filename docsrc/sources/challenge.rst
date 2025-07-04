@@ -30,7 +30,7 @@ Happy hunting! 🚀
             color: #000;
         }
         .success {
-            color: green;
+            color: black;
             font-size: 1.2em;
             margin-top: 20px;
         }
@@ -101,7 +101,6 @@ Happy hunting! 🚀
         </div>
     </div>
     <div id="congratulations" class="success" style="display: none;">
-        <br>
         <img src="_images/network_detective.png" alt="Network Detective" style="margin-top:20px; max-width:50%; height:auto;"/>
         <br>
         Elementary, my dear engineer. Hidden in packets, configs, 
