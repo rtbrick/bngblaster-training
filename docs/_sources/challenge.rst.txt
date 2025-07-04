@@ -102,11 +102,11 @@ Happy hunting! 🚀
     </div>
     <div id="congratulations" class="success" style="display: none;">
         <br>
+        <img src="_images/network_detective.png" alt="Network Detective" style="margin-top:20px; max-width:50%; height:auto;"/>
+        <br>
         Elementary, my dear engineer. Hidden in packets, configs, 
         and traces were clues only a real BNG mind could find. 
         You, my friend, have earned your seat in the network detective club.
-        <br>
-        <img src="_images/network_detective.png" alt="Network Detective" style="margin-top:20px; max-width:50%; height:auto;"/>
         <br>
     </div>
 
