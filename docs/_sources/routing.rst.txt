@@ -46,7 +46,7 @@ with the active BNG Blaster instance.
 .. code-block:: none
 
     # > RBFS (op)
-    show show isis neighbor
+    show isis neighbor
     show isis database
     show route
     show route summary
